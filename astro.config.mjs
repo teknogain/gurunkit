@@ -14,7 +14,7 @@ export default defineConfig({
 					autogenerate: { directory: 'getting-started' }
 				},
 				{
-					label: 'Guides',
+					label: 'Components',
 					autogenerate: { directory: 'components' }
 				},
 				{
