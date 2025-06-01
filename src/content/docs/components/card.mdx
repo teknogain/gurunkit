@@ -1,0 +1,38 @@
+---
+title: Card  
+description: A guide to using the card component.
+---
+
+The `Card` component is a simple container with padding and border styling, used to group related content in a clean and structured layout.
+
+## Base Component
+
+This is the basic implementation of the card component:
+
+```vue
+<template>
+  <div class="rounded-md border border-gray-300 p-4">
+    <slot />
+  </div>
+</template>
+````
+
+## Usage
+
+You can use the `Card` component by importing and wrapping your content with it.
+
+### Plain Card
+
+```vue
+<script setup>
+import BaseCard from './components/base/base-card.vue'
+</script>
+
+<template>
+  <base-card>
+    Card Content
+  </base-card>
+</template>
+```
+
+This will render a box with rounded corners, a light border, and padding around the content inside.
