@@ -10,9 +10,20 @@ The `Card` component is a simple container with padding and border styling, used
 This is the basic implementation of the card component:
 
 ```vue
+<script setup>
+defineProps({
+  title: String
+})
+</script>
+
 <template>
-  <div class="rounded-md border border-gray-300 p-4">
-    <slot />
+  <div class="rounded-md border border-gray-300">
+    <div v-if="title" class="border-b border-gray-300 p-4">
+      <h2 class="text-xl font-bold">{{ title }}</h2>
+    </div>
+    <div class="p-4">
+      <slot />
+    </div>
   </div>
 </template>
 ````
@@ -36,3 +47,19 @@ import BaseCard from './components/base/base-card.vue'
 ```
 
 This will render a box with rounded corners, a light border, and padding around the content inside.
+
+### Header Title
+
+```vue
+<script setup>
+import BaseCard from './components/base/base-card.vue'
+</script>
+
+<template>
+  <base-card title="Card Title">
+    Card Content
+  </base-card>
+</template>
+```
+
+This will render a card with a header section at the top, displaying the given title with a bottom border separating it from the main content.
