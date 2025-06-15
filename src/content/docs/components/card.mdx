@@ -18,8 +18,10 @@ defineProps({
 
 <template>
   <div class="rounded-md border border-gray-300">
-    <div v-if="title" class="border-b border-gray-300 p-4">
+    <div v-if="title" class="border-b border-gray-300 p-4 flex items-center justify-between">
       <h2 class="text-xl font-bold">{{ title }}</h2>
+
+      <slot name="action" />
     </div>
     <div class="p-4">
       <slot />
@@ -63,3 +65,22 @@ import BaseCard from './components/base/base-card.vue'
 ```
 
 This will render a card with a header section at the top, displaying the given title with a bottom border separating it from the main content.
+
+### Header Title with Action
+
+```vue
+<script setup>
+import BaseCard from './components/base/base-card.vue'
+</script>
+
+<template>
+  <base-card title="User Info">
+    <template #action>
+      <button class="text-sm text-blue-600 hover:underline">Edit</button>
+    </template>
+    This card has a title and an action button in the header.
+  </base-card>
+</template>
+```
+
+This will render a card with a header that contains both a title on the left and a custom action button (like “Edit”) on the right, separated by space using a flexible layout.
