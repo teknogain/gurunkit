@@ -26,6 +26,9 @@ defineProps({
     <div class="p-4">
       <slot />
     </div>
+    <div v-if="$slots.footer" class="border-t border-gray-300 p-4">
+      <slot name="footer" />
+    </div>
   </div>
 </template>
 ````
@@ -84,3 +87,25 @@ import BaseCard from './components/base/base-card.vue'
 ```
 
 This will render a card with a header that contains both a title on the left and a custom action button (like “Edit”) on the right, separated by space using a flexible layout.
+
+### Footer
+
+```vue
+<script setup>
+import BaseCard from './components/base/base-card.vue'
+</script>
+
+<template>
+  <base-card>
+    Card Content
+
+    <template #footer>
+      <div class="text-sm text-gray-500">
+        Last updated 2 hours ago
+      </div>
+    </template>
+  </base-card>
+</template>
+```
+
+This will render a card with a footer section at the bottom, displaying additional content such as a timestamp or supplementary information, separated by a top border from the main content.
