@@ -13,7 +13,10 @@ This is the basic implementation of the card component:
 <script setup>
 defineProps({
   title: String,
-  bordered: Boolean
+  bordered: {
+    type: Boolean,
+    default: true
+  }
 })
 </script>
 
