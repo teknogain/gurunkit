@@ -16,12 +16,19 @@ defineProps({
   bordered: {
     type: Boolean,
     default: true
-  }
+  },
+  shadow: false
 })
 </script>
 
 <template>
-  <div :class="[bordered ? 'border border-gray-300' : '', 'rounded-md']">
+  <div
+    :class="[
+      bordered ? 'border border-gray-300' : '',
+      shadow ? 'shadow-md' : '',
+      'rounded-md'
+    ]"
+  >
     <div v-if="title" class="border-b border-gray-300 p-4 flex items-center justify-between">
       <h2 class="text-xl font-bold">{{ title }}</h2>
 
@@ -129,3 +136,19 @@ import BaseCard from './components/base/base-card.vue'
 ```
 
 This will render a card without any border, creating a cleaner and more minimal look. It’s useful in layouts where the surrounding design already provides enough visual separation.
+
+### Card with Shadow
+
+```vue
+<script setup>
+import BaseCard from './components/base/base-card.vue'
+</script>
+
+<template>
+  <base-card shadow>
+    This card has a shadow effect.
+  </base-card>
+</template>
+```
+
+This will render a card with a subtle shadow effect (`shadow-md`), giving it visual depth and making it appear elevated above the background. It’s useful for highlighting important sections in the interface.
