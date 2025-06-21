@@ -26,7 +26,3 @@ Import the component and use it wherever you need it in your project.
 ## Component Usage
 
 Refer to the **Component Usage** section (usually found at the bottom of the component page) to learn how to use props, model binding, and other available features.
-
----
-
-Kalau kamu ingin gaya yang lebih santai atau lebih formal, bisa aku sesuaikan juga.

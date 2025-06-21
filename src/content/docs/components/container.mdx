@@ -3,25 +3,32 @@ title: Container
 description: A guide to using the container component.
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components';
-
 `Container` centers the content and adds horizontal padding based on screen size.
 
-<Tabs>
-  <TabItem label='HTML'>
-    ```html
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Content -->
-    </div>
-    ```
-  </TabItem>
-  <TabItem label='Vue'>
-    ```vue
-    <template>
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Content -->
-      </div>
-    </template>
-    ```
-  </TabItem>
-</Tabs>
+## Base Component
+
+This is the basic implementation of the container component:
+
+```vue
+<template>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Content -->
+  </div>
+</template>
+```
+
+## Usage
+
+You can use the `Container` component by importing and wrapping your content with it.
+
+```vue
+<script setup>
+import BaseContainer from './components/base/base-container.vue'
+</script>
+
+<template>
+  <base-container>
+    Container Content
+  </base-container>
+</template>
+```
