@@ -3,7 +3,7 @@ title: Heading
 description: A guide to using the heading component.
 ---
 
-The `Heading` component is a reusable component used to display page or section titles. It supports different heading levels (`<h1>` to `<h6>`) and allows injecting custom action elements (e.g., buttons) next to the heading.
+The `Heading` component used to display page or section titles. It supports different heading levels (`<h1>` to `<h6>`) and allows injecting custom action elements (e.g., buttons) next to the heading.
 
 ## Base Component
 
@@ -51,7 +51,7 @@ const titleSize = computed(() => {
     <slot name="action" />
   </div>
 </template>
-````
+```
 
 ## Props
 

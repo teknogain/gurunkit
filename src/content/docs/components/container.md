@@ -15,7 +15,7 @@ This is the basic implementation of the `Container` component:
     <slot />
   </div>
 </template>
-````
+```
 ## Slots
 
 ### Default Slot

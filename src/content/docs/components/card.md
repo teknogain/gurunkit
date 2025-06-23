@@ -46,7 +46,7 @@ defineProps({
     </div>
   </div>
 </template>
-````
+```
 
 ## Props
 
