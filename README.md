@@ -6,3 +6,4 @@
 - [ ] Input component
 - [ ] Select component
 - [ ] Button `disabled` props
+- [ ] Button `button` props
