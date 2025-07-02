@@ -9,3 +9,7 @@
 - [ ] Button `type` props
 - [ ] Alert Component
 - [ ] Spinner Component
+- [ ] Button transparent gray color
+- [ ] Base container
+- [ ] Base modal
+- [ ] Base confirm
