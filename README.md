@@ -15,3 +15,6 @@
 - [ ] Base confirm
 - [ ] Button fullwidth
 - [ ] Button icon
+- [ ] Confirm Component
+- [ ] Navbar Component
+- [ ] List Component
