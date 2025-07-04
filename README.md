@@ -18,3 +18,5 @@
 - [ ] Confirm Component
 - [ ] Navbar Component
 - [ ] List Component
+- [ ] Alert close button
+- [ ] Button loading
