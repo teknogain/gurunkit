@@ -20,3 +20,4 @@
 - [ ] List Component
 - [ ] Alert close button
 - [ ] Button loading
+- [ ] Button icon only
