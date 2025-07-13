@@ -22,3 +22,6 @@
 - [ ] Form Input Component
 - [ ] Select search component
 - [ ] Dropdown component
+- [ ] Alert close button
+- [ ] Button loading
+- [ ] Button icon only
