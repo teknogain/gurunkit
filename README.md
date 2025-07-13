@@ -18,3 +18,7 @@
 - [ ] Confirm Component
 - [ ] Navbar Component
 - [ ] List Component
+- [ ] Pagination Component
+- [ ] Form Input Component
+- [ ] Select search component
+- [ ] Dropdown component
