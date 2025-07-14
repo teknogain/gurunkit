@@ -3,11 +3,11 @@ title: Heading
 description: A guide to using the heading component.
 ---
 
-The `Heading` component used to display page or section titles. It supports different heading levels (`<h1>` to `<h6>`) and allows injecting custom action elements (e.g., buttons) next to the heading.
+`Heading` is a flexible component for rendering semantic page headings (`h1`–`h6`) with consistent styling and optional action content (such as buttons or filters). It helps maintain a clean and responsive layout for section or page titles.
+
+---
 
 ## Base Component
-
-This is the basic implementation of the `Heading` component:
 
 ```vue
 <script setup>
@@ -41,7 +41,9 @@ const titleSize = computed(() => {
 </script>
 
 <template>
-  <div class="flex items-center justify-between">
+  <div
+    class="flex flex-col gap-4 sm:gap-2 sm:flex-row sm:items-center sm:justify-between"
+  >
     <component
       :is="tagName"
       :class="['font-bold text-gray-900', titleSize]"
@@ -53,34 +55,19 @@ const titleSize = computed(() => {
 </template>
 ```
 
+---
+
 ## Props
 
-### `title` (required)
+| Prop    | Type   | Default | Required | Description                                                               |
+| ------- | ------ | ------- | -------- | ------------------------------------------------------------------------- |
+| `title` | String | —       | ✅ Yes    | The text content of the title heading.                                    |
+| `level` | Number | `1`     | ❌ No     | Defines the heading level (`1` to `6`). Determines which HTML tag to use. |
 
-The text to be displayed as the heading.
+---
 
-```vue
-<base-heading title="Dashboard" />
-```
+## Slot
 
-### `level`
-
-The heading level to render (`1`–`6`). Defaults to `1`. This determines the semantic tag (`<h1>`–`<h6>`) and font size.
-
-```vue
-<base-heading title="Section Title" :level="3" />
-```
-
-## Slots
-
-### `action`
-
-Optional slot for rendering an element (e.g., button or link) to the right side of the heading.
-
-```vue
-<base-heading title="Users">
-  <template #action>
-    <button class="text-sm text-blue-600 hover:underline">Add User</button>
-  </template>
-</base-heading>
-```
+| Slot name | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| `action`  | Slot for placing an action element (e.g., button, dropdown). |
