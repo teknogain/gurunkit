@@ -3,27 +3,58 @@ title: Container
 description: A guide to using the container component.
 ---
 
-The `Container` component is a layout utility that centers content horizontally and applies responsive horizontal padding. It's commonly used to wrap page sections, ensuring consistent spacing across different screen sizes.
+`Container` is a reusable layout wrapper component designed to control maximum container width based on the provided screen size breakpoint. It uses Tailwind CSS utility classes and allows consistent layout spacing across your application.
+
+---
 
 ## Base Component
 
-This is the basic implementation of the `Container` component:
-
 ```vue
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+  maxScreen: {
+    type: String,
+    validator: (val) => ['sm', 'md', 'lg', 'xl'].includes(val),
+  },
+});
+
+const containerClass = computed(() => {
+  if (!props.maxScreen) {
+    return '';
+  }
+
+  const maxScreenBreakpoints = {
+    sm: 'md:max-w-screen-sm lg:max-w-screen-sm xl:max-w-screen-sm 2xl:max-w-screen-sm',
+    md: 'lg:max-w-screen-md xl:max-w-screen-md 2xl:max-w-screen-md',
+    lg: 'xl:max-w-screen-lg 2xl:max-w-screen-lg',
+    xl: '2xl:max-w-screen-xl',
+  };
+
+  return maxScreenBreakpoints[props.maxScreen];
+});
+</script>
+
 <template>
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+  <div :class="['container mx-auto px-4 sm:px-6 lg:px-8', containerClass]">
     <slot />
   </div>
 </template>
 ```
-## Slots
 
-### Default Slot
+---
 
-Place your content inside the default slot. This content will be centered and padded based on the screen size.
+## Props
 
-```vue
-<base-container>
-  <p>This content is inside a centered container with horizontal padding.</p>
-</base-container>
-```
+| Prop        | Type   | Description                                                                                                                     |
+| ----------- | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| `maxScreen` | String | (Optional) Determines the maximum container width at specific breakpoints. <br>Accepted values: `'sm'`, `'md'`, `'lg'`, `'xl'`. |
+
+---
+
+## Slot
+
+| Slot    | Description                                      |
+| ------- | ------------------------------------------------ |
+| default | The content to be rendered inside the container. |
