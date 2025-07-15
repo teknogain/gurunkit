@@ -2,7 +2,7 @@
 - [x] Confirm Component
 - [x] Navbar Component
 - [x] List Component
-- [ ] Pagination Component
+- [x] Pagination Component
 - [ ] Form Item Component
 - [ ] Select search Component
 - [ ] Dropdown Component
