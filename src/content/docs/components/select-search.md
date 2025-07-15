@@ -6,11 +6,11 @@ description: A guide to using the select search component.
 `SelectSearch` is an advanced dropdown component designed for searchable and dynamic selection. It supports async loading, keyboard navigation, scroll-to-load, and custom item creation when no results are found.
 
 > **Note:** This component relies on the following external components and utilities:
-> * **Input** – Input field with built-in debounce event. [Read the integration guide here](/components/input).
-> * **Spinner** – Spinner shown during loading state. [Read the integration guide here](/components/spinner).
-> * **Iconify** – used to render icons via the `icon` prop. [Follow the installation guide here](https://iconify.design/docs/icon-components/vue/).
-> * **v-click-outside** – Directive to close dropdown on outside click. [Follow the installation guide here](https://www.npmjs.com/package/v-click-outside).
-> * **@vueuse/motion** – `v-motion-slide-top` is used to animate dropdown appearance. [Follow the installation guide here](https://www.npmjs.com/package/v-click-outside).
+> * **Input** – used to display input field for searching. [Read the integration guide here](/components/input).
+> * **Spinner** – used to show a loading indicator. [Read the integration guide here](/components/spinner).
+> * **Iconify** – used to render an icon to clear the selected item. [Follow the installation guide here](https://iconify.design/docs/icon-components/vue/).
+> * **click-outside-vue3** – used to close the dropdown when clicking outside of the dropdown. [Follow the installation guide here](https://www.npmjs.com/package/click-outside-vue3).
+> * **@vueuse/motion** – used for the dropdown's enter animation. [Follow the installation guide here](https://motion.vueuse.org/getting-started/introduction).
 
 ---
 
@@ -229,7 +229,7 @@ watch(visible, (newVisible) => {
   </div>
 </template>
 
-````
+```
 
 ---
 
@@ -237,21 +237,21 @@ watch(visible, (newVisible) => {
 
 | Prop                | Type    | Required | Description                                                    |
 | ------------------- | ------- | -------- | -------------------------------------------------------------- |
-| `items`             | Array   | ✅ Yes    | List of selectable items, each item must have `id` and `name`. |
-| `placeholder`       | String  | ❌ No     | Placeholder text displayed in the input field.                 |
-| `searchEmptyCreate` | Boolean | ❌ No     | Whether to allow creating a new item when no match is found.   |
+| `items`             | Array   | Yes    | List of selectable items, each item must have `id` and `name`. |
+| `placeholder`       | String  | No     | Placeholder text displayed in the input field.                 |
+| `searchEmptyCreate` | Boolean | No     | Whether to allow creating a new item when no match is found.   |
 
-## v-model
+## Models
 
-| Model             | Type    | Description                           |
+| Prop             | Type    | Description                           |
 | ----------------- | ------- | ------------------------------------- |
-| `v-model`         | Object  | Selected item object: `{ id, name }`. |
-| `v-model:search`  | String  | Current value of the search input.    |
-| `v-model:loading` | Boolean | Controls loading spinner state.       |
+| `default`         | Object  | Selected item object: `{ id, name }`. |
+| `search`  | String  | Current value of the search input.    |
+| `loading` | Boolean | Controls loading spinner state.       |
 
 ## Emits
 
-| Event Name                 | Description                                                              |
+| Event                 | Description                                                              |
 | -------------------------- | ------------------------------------------------------------------------ |
 | `opened`                   | Emitted when the dropdown is opened.                                     |
 | `search-debounce`          | Emitted after the search input changes (with debounce from `Input`). |
@@ -260,4 +260,4 @@ watch(visible, (newVisible) => {
 
 ## Slots
 
-This component does not expose custom slots — all rendering is handled internally. Use props and model bindings to control behavior and data.
+This component does not use any slots.

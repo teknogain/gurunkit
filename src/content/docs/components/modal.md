@@ -5,12 +5,12 @@ description: A guide to using the modal component.
 
 `Modal` is a component for rendering modal dialogs. It supports an optional container layout, vertical centering, and emits an event when the modal becomes visible. The modal content is wrapped in a card layout with a close button.
 
-> **Note:** This component relies on the following external components and utilities to function properly:
+> **Note:** This component relies on the following external components to function properly:
 > * **Iconify** – used to render the close icon via the `<Icon>` component. [Follow the installation guide here](https://iconify.design/docs/icon-components/vue/).
-> * **v-click-outside** – a directive used to close the modal when clicking outside of the card. [Follow the installation guide here](https://www.npmjs.com/package/v-click-outside).
-> * **Container** – a layout wrapper component used when `withContainer` is set to `true`. [Read the integration guide here](/components/container).
+> * **click-outside-vue3** – used to close the modal when clicking outside of the modal. [Follow the installation guide here](https://www.npmjs.com/package/click-outside-vue3).
+> * **Container** – used to wrap the modal content within a container when `withContainer` is set to `true`. [Read the integration guide here](/components/container).
 > * **Card** – used to render the modal content within a styled card layout. [Read the integration guide here](/components/card).
-> * **@vueuse/motion** – used for the modal's enter animation with `v-motion-slide-top`. [Follow the installation guide here](https://www.npmjs.com/package/v-click-outside).
+> * **@vueuse/motion** – used for the modal's enter animation. [Follow the installation guide here](https://motion.vueuse.org/getting-started/introduction).
 
 ---
 
@@ -69,7 +69,7 @@ watch(visible, (newValue) => {
       :class="classes.container"
       v-bind="containerProps"
     >
-      <card
+      <Card
         v-click-outside="onClose"
         :bordered="false"
         :title="title"
@@ -84,7 +84,7 @@ watch(visible, (newValue) => {
           </button>
         </template>
         <slot />
-      </card>
+      </Card>
     </component>
   </div>
 </template>
@@ -103,14 +103,20 @@ watch(visible, (newValue) => {
 | `title`          | String  | —                   | Title text displayed in the modal card header.                       |
 | `verticalCenter` | Boolean | `false`             | Vertically centers the modal content if `true`.                      |
 
+## Models
+
+| Prop | Type | Description                                  |
+| ---------- | ----- | -------------------------------------------- |
+| `visible`  | Boolean | Controls the visibility of the modal dialog. |
+
 ## Emits
 
 | Event    | Description                      |
 | -------- | -------------------------------- |
 | `opened` | Emitted when the modal is opened |
 
-## Slot
+## Slots
 
-| Slot name | Description                                  |
+| Slot | Description                                  |
 | --------- | -------------------------------------------- |
-| *default* | The main content displayed inside the modal. |
+| default | The main content displayed inside the modal. |

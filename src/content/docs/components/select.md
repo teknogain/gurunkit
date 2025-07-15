@@ -5,8 +5,8 @@ description: A guide to using the select component.
 
 `Select` is a reusable `<select>` component with styling, sizing, color theming, and optional debounced `change` event. Suitable for use in forms, filters, or dropdown selections.
 
-> **Note:** This component requires an external `debounce` utility function.
-> You can create the debounce file manually by following the guide [here](/utility/debounce), then import it into this component.
+> **Note:** This component relies on the following external components to function properly:
+> * **debounce** – used to debounce the `change` event. [Read the integration guide here](/utility/debounce).
 
 ---
 
@@ -143,17 +143,17 @@ function onChange() {
 | `color`     | String  | `'white'` | Visual theme variant. Supports `'white'`, `'*-filled'` options.           |
 | `debounced` | Boolean | `false`   | If `true`, the `change` event is debounced (500ms).                       |
 
-## v-model
-
-This component uses `v-model` for binding the selected value (via `defineModel()`).
-
 ## Emits
 
-| Event    | Payload | Description                                                                 |
-| -------- | ------- | --------------------------------------------------------------------------- |
-| `change` | —       | Triggered on value change, either instantly or debounced depending on prop. |
-| *native* | —       | Native DOM events like `blur`, `focus` are forwarded by Vue.                |
+| Event    | Description                                                                 |
+| -------- | --------------------------------------------------------------------------- |
+| `change` | Triggered on value change, either instantly or debounced depending on prop. |
+| *native events* | Native DOM events like `blur`, `focus` are forwarded by Vue.                |
+
+## Models
+
+This component uses `v-model` to bind its value, which makes it reactive and easy to integrate with forms.
 
 ## Slots
 
-This component does **not** use any slots.
+This component does not use any slots.

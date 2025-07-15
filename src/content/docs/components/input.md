@@ -5,8 +5,8 @@ description: A guide to using the input component.
 
 `Input` is a simple and reusable text input component with support for `v-model`, fullwidth layout, and built-in debounced input handling. It's designed to be flexible and lightweight for use in forms, search fields, or filters.
 
-> **Note:** This component requires an external `debounce` utility function.
-> You can create the debounce file manually by [following the guide here](/utility/debounce), then import it into this component.
+> **Note:** This component relies on the following external components to function properly:
+> * **debounce** – used to debounce the `input` event. [Read the integration guide here](/utility/debounce).
 
 ---
 
@@ -58,25 +58,26 @@ defineExpose({ input });
 | `fullwidth`    | Boolean | `false` | If `true`, makes the input take full width.                                                    |
 | *native attrs* | –       | –       | All native `<input>` attributes like `placeholder`, `disabled`, etc. are passed automatically. |
 
-## v-model
+## Models
 
 This component uses `v-model` to bind its value, which makes it reactive and easy to integrate with forms.
 
 ## Emits
 
-| Event            | Payload | Description                                                                |
-| ---------------- | ------- | -------------------------------------------------------------------------- |
-| `input`          | —       | Fired immediately when user types (standard input event).                  |
-| `input-debounce` | —       | Fired with a 500ms delay after user input stops (debounced event).         |
-| *native events*  | —       | All native `<input>` events like `focus`, `blur`, `keydown` are forwarded. |
+| Event            | Description                                                                |
+| ---------------- | -------------------------------------------------------------------------- |
+| `input`          | Fired immediately when user types (standard input event).                  |
+| `input-debounce` | Fired with a 500ms delay after user input stops (debounced event).         |
+| *native events*  | All native `<input>` events like `focus`, `blur`, `keydown` are forwarded. |
 
 ## Slot
 
-This component does **not** use any slots.
+This component does not use any slots.
 
 ---
 
-## Exposed Refs
+## Exposed
 
-This component exposes the native `<input>` element via the `input` ref using `defineExpose()`.
-You can access it from the parent to call native methods like `.focus()`, `.select()`, etc.
+| Property | Value        |
+| ------------ | ---------------- |
+| `input`      | HTMLInputElement |

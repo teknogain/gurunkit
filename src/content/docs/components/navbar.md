@@ -7,9 +7,9 @@ description: A guide to using the navbar component.
 
 > **Note:** This component relies on the following external components and utilities:
 > * **Iconify** – used to render the mobile menu icon. [Follow the installation guide here](https://iconify.design/docs/icon-components/vue/).
-> * **Container** – wraps the navbar content. [Read the integration guide here](/components/container).
-> * **v-click-outside** – a directive used to detect clicks outside the sidebar to close it. [Follow the installation guide here](https://www.npmjs.com/package/v-click-outside).
-> * **Vue Router** – required for `router-link` and to auto-hide the sidebar on route change. [Follow the installation guide here](https://router.vuejs.org/installation.html).
+> * **Container** – used to wrap the navbar content. [Read the integration guide here](/components/container).
+> * **click-outside-vue3** – used to close the sidebar when clicking outside of the sidebar. [Follow the installation guide here](https://www.npmjs.com/package/click-outside-vue3).
+> * **Vue Router** – required for menu navigation and auto-hiding the sidebar on route change. [Follow the installation guide here](https://router.vuejs.org/installation.html).
 
 ---
 
@@ -101,7 +101,7 @@ router.afterEach(() => (mobileSidebarVisible.value = false));
 
 ## Slots
 
-| Slot name | Description                                                                        |
+| Slot | Description                                                                        |
 | --------- | ---------------------------------------------------------------------------------- |
 | `start`   | Content shown on the left side of the navbar (default shows mobile toggle + menu). |
 | `end`     | Content shown on the right side of the navbar (e.g., user avatar, settings).       |

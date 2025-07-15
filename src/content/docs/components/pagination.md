@@ -6,7 +6,6 @@ description: A guide to using the pagination component.
 `Pagination` is a navigation component used to switch between multiple pages of content. It provides numbered page links, as well as previous and next arrows, and emits a `change-page` event when the active page changes.
 
 > **Note:** This component relies on the following external resources:
->
 > * **Iconify** – used to render navigation arrows. [Follow the installation guide here](https://iconify.design/docs/icon-components/vue/).
 
 ---
@@ -98,11 +97,11 @@ function onNext() {
 
 | Prop          | Type   | Required | Description                                |
 | ------------- | ------ | -------- | ------------------------------------------ |
-| `totalPages`  | Number | ✅ Yes    | Total number of pages to render.           |
+| `totalPages`  | Number | Yes    | Total number of pages to render.           |
 
-## v-model
+## Models
 
-| Name           | Type   | Description                                 |
+| Prop           | Type   | Description                                 |
 | -------------- | ------ | ------------------------------------------- |
 | `current-page` | Number | Two-way binding for the active page number. |
 

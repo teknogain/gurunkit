@@ -78,7 +78,7 @@ defineProps({
 | `striped`  | Boolean | `true`  | Adds a bottom border under the title for separation.          |
 | `paddless` | Boolean | `false` | Removes default padding inside the card body if set to `true`. |
 
-## Slot
+## Slots
 
 | Slot     | Description                                          |
 | -------- | ---------------------------------------------------- |

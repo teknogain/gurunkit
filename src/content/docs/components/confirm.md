@@ -18,7 +18,7 @@ description: A guide to using the confirm component.
 <script setup>
 import Modal from './Modal.vue';
 import Heading from './Heading.vue';
-import BaseButton from './Button.vue';
+import Button from './Button.vue';
 
 defineProps({
   title: {
@@ -50,32 +50,32 @@ const visible = defineModel('visible');
 </script>
 
 <template>
-  <modal
+  <Modal
     v-model:visible="visible"
     :with-container="false"
     :classes="{ container: 'w-fit mx-auto px-4' }"
     :card-props="{ paddless: true, class: 'p-8' }"
   >
     <div class="flex flex-col items-center justify-center text-center gap-4">
-      <heading
+      <Heading
         :title="title"
         :level="4"
       />
       <p>{{ message }}</p>
       <div class="flex gap-2">
-        <base-button
+        <Button
           :color="confirmColor"
           :loading="loading"
           @click="$emit('confirmed')"
         >
           {{ confirmText }}
-        </base-button>
-        <base-button @click="visible = false">
+        </Button>
+        <Button @click="visible = false">
           {{ cancelText }}
-        </base-button>
+        </Button>
       </div>
     </div>
-  </modal>
+  </Modal>
 </template>
 ```
 
@@ -85,12 +85,18 @@ const visible = defineModel('visible');
 
 | Prop           | Type    | Default     | Required | Description                                                                              |
 | -------------- | ------- | ----------- | -------- | ---------------------------------------------------------------------------------------- |
-| `title`        | String  | —           | ✅ Yes    | The title displayed at the top of the modal.                                             |
-| `message`      | String  | —           | ✅ Yes    | The message shown below the title.                                                       |
-| `confirmText`  | String  | `"Confirm"` | ❌ No     | The label for the confirm button.                                                        |
-| `confirmColor` | String  | `"red"`     | ❌ No     | Color of the confirm button. Must be one of `"blue"`, `"red"`, `"yellow"`, or `"green"`. |
-| `cancelText`   | String  | `"Cancel"`  | ❌ No     | The label for the cancel button.                                                         |
-| `loading`      | Boolean | `false`     | ❌ No     | Shows a loading state on the confirm button when `true`.                                 |
+| `title`        | String  | —           | Yes    | The title displayed at the top of the modal.                                             |
+| `message`      | String  | —           | Yes    | The message shown below the title.                                                       |
+| `confirmText`  | String  | `"Confirm"` | No     | The label for the confirm button.                                                        |
+| `confirmColor` | String  | `"red"`     | No     | Color of the confirm button. Must be one of `"blue"`, `"red"`, `"yellow"`, or `"green"`. |
+| `cancelText`   | String  | `"Cancel"`  | No     | The label for the cancel button.                                                         |
+| `loading`      | Boolean | `false`     | No     | Shows a loading state on the confirm button when `true`.                                 |
+
+## Models
+
+| Prop | Type | Description                                  |
+| ---------- | ----- | -------------------------------------------- |
+| `visible`  | Boolean | Controls the visibility of the modal dialog. |
 
 ## Emits
 
@@ -98,13 +104,6 @@ const visible = defineModel('visible');
 | ----------- | ------------------------------------------------ |
 | `confirmed` | Emitted when the user clicks the confirm button. |
 
-## Model
+## Slots
 
-| Model prop | Description                                  |
-| ---------- | -------------------------------------------- |
-| `visible`  | Controls the visibility of the modal dialog. |
-
-
-## Slot
-
-This component does **not** use any slots.
+This component does not use any slots.

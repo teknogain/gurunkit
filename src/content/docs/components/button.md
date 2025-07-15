@@ -5,9 +5,9 @@ description: A guide to using the button component.
 
 `Button` is a reusable and highly customizable button component. It supports multiple sizes and color variants, optional icons or loading spinners, full-width display, and icon-only mode. It is designed to work well with Tailwind CSS utility classes and integrates with the [Iconify](https://iconify.design/) icon system.
 
-> **Note:** This component relies on two external components to function properly:
+> **Note:** This component relies on the following external components to function properly:
 > * **Iconify** – used to render icons via the `icon` prop. [Follow the installation guide here](https://iconify.design/docs/icon-components/vue/).
-> * **Spinner component (`Spinner.vue`)** – used to show a loading indicator when the `loading` prop is active. [Read the integration guide here](/components/spinner).
+> * **Spinner** – used to show a loading indicator when the `loading` prop is active. [Read the integration guide here](/components/spinner).
 
 ---
 
@@ -99,7 +99,7 @@ const size = computed(() => {
       fullwidth ? 'w-full' : '',
     ]"
   >
-    <spinner
+    <Spinner
       v-if="loading"
       :color="spinnerColor"
     />
@@ -127,7 +127,7 @@ const size = computed(() => {
 | `disabled`  | Boolean | `false`     | Disables the button if `true`.                                                                                                                                   |
 | `iconOnly`  | Boolean | `false`     | If `true`, the button becomes square and only shows the icon or spinner.                                                                                         |
 
-## Slot
+## Slots
 
 | Slot    | Description                                        |
 | ------- | -------------------------------------------------- |

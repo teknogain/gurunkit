@@ -47,11 +47,11 @@ const containerClass = computed(() => {
 
 ## Props
 
-| Prop        | Type   | Description                                                                                                                     |
-| ----------- | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| `maxScreen` | String | (Optional) Determines the maximum container width at specific breakpoints. <br>Accepted values: `'sm'`, `'md'`, `'lg'`, `'xl'`. |
+| Prop        | Type   | Default  | Description |
+| ----------- | ------ | -------- | ----------- |
+| `maxScreen` | String | — | (Optional) Determines the maximum container width at specific breakpoints. <br>Accepted values: `'sm'`, `'md'`, `'lg'`, `'xl'`. |
 
-## Slot
+## Slots
 
 | Slot    | Description                                      |
 | ------- | ------------------------------------------------ |

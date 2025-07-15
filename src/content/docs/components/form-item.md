@@ -37,11 +37,11 @@ defineProps({
 
 | Prop    | Type   | Required | Description                                                                            |
 | ------- | ------ | -------- | -------------------------------------------------------------------------------------- |
-| `id`    | String | ✅ Yes    | The unique identifier for the form input. Passed to both the label `for` and the slot. |
-| `label` | String | ✅ Yes    | The text content for the `<label>` element.                                            |
+| `id`    | String | Yes    | The unique identifier for the form input. Passed to both the label `for` and the slot. |
+| `label` | String | Yes    | The text content for the `<label>` element.                                            |
 
 ## Slots
 
-| Slot name | Props | Description                                                                 |
+| Slot | Props | Description                                                                 |
 | --------- | ----- | --------------------------------------------------------------------------- |
-| default   | `id`  | The default slot should render a form input and use the provided `id` prop. |
+| default   | `{ id: String }`  | The default slot should render a form input and use the provided `id` prop. |

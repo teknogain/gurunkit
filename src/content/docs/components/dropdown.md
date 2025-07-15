@@ -5,9 +5,9 @@ description: A guide to using the dropdown component.
 
 `Dropdown` is a customizable dropdown component that supports dynamic options, animated visibility, and click-outside behavior. It provides named slots for trigger, header, and options, enabling complete control over the menu's appearance and behavior.
 
-> **Note:** This component relies on the following external dependencies:
-> * **v-click-outside** – a directive used to close the modal when clicking outside of the card. [Follow the installation guide here](https://www.npmjs.com/package/v-click-outside).
-> * **@vueuse/motion** – used for the dropdown's enter animation with `v-motion-slide-top`. [Follow the installation guide here](https://www.npmjs.com/package/v-click-outside).
+> **Note:** This component relies on the following external components to function properly:
+> * **click-outside-vue3** – used to close the dropdown when clicking outside of the dropdown. [Follow the installation guide here](https://www.npmjs.com/package/click-outside-vue3).
+> * **@vueuse/motion** – used for the dropdown's enter animation. [Follow the installation guide here](https://www.npmjs.com/package/v-click-outside).
 
 ---
 
@@ -76,11 +76,11 @@ function onToggle() {
 
 | Prop      | Type  | Required | Description                                                                                                              |
 | --------- | ----- | -------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `options` | Array | ✅ Yes    | List of option objects used in the dropdown. Each option is passed to the `option` slot. Expected to have a unique `id`. |
+| `options` | Array | Yes    | List of option objects used in the dropdown. Each option is passed to the `option` slot. Expected to have a unique `id`. |
 
 ## Slots
 
-| Slot name | Props                                             | Description                                                                  |
+| Slot | Props                                             | Description                                                                  |
 | --------- | ------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `trigger` | `{ toggle: Function }`                            | Slot to render the clickable trigger element. Call `toggle()` to open/close. |
 | `header`  | `{ classes: { header: String } }`                 | Optional header inside the dropdown panel.                                   |

@@ -5,9 +5,9 @@ description: A guide to using the alert component.
 
 `Alert` is a simple, colored alert component that supports icons, loading spinners, and optional close functionality. Useful for displaying contextual messages such as success, warning, or error.
 
-> **Note:** This component relies on two external components to function properly:
+> **Note:** This component relies on the following external components to function properly:
 > * **Iconify** – used to render icons via the `icon` prop. [Follow the installation guide here](https://iconify.design/docs/icon-components/vue/).
-> * **Spinner component (`Spinner.vue`)** – used to show a loading indicator when the `loading` prop is active. [Read the integration guide here](/components/spinner).
+> * **Spinner** – used to show a loading indicator when the `loading` prop is active. [Read the integration guide here](/components/spinner).
 
 ---
 
@@ -58,7 +58,7 @@ const icon = computed(() => {
     ]"
   >
     <div class="flex items-start gap-2">
-      <spinner
+      <Spinner
         v-if="loading"
         class="mt-1"
         :color="props.color"

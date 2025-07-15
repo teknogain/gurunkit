@@ -5,7 +5,7 @@ description: A guide to using the list component.
 
 `List` is a flexible UI component for rendering collections of data inside a card layout. It supports custom header and item slots, empty state messages, hover effects, and size variations.
 
-> **Note:** This component relies on the following external components and utilities:
+> **Note:** This component relies on the following external components to function properly:
 > * **Card** – used to wrap the list content inside a styled container. [Read the integration guide here](/components/card).
 
 ---
@@ -49,7 +49,7 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <card paddless>
+  <Card paddless>
     <div :class="[striped ? 'divide-y divide-gray-300' : '']">
       <slot
         name="header"
@@ -75,7 +75,7 @@ const classes = computed(() => {
         </div>
       </slot>
     </div>
-  </card>
+  </Card>
 </template>
 ```
 
@@ -93,8 +93,8 @@ const classes = computed(() => {
 
 ## Slots
 
-| Slot name | Props passed    | Description                                                                  |
+| Slot | Props    | Description                                                                  |
 | --------- | --------------- | ---------------------------------------------------------------------------- |
-| `header`  | `classes.item`  | Slot for custom header content, aligned with item styling.                   |
-| (default) | `classes.item`  | Default slot used if no `item` slot is defined.                              |
-| `item`    | `item`, `index` | Slot used to render each data item. Scoped props include `item` and `index`. |
+| `header`  | `{ classes: { item } }`  | Slot for custom header content, aligned with item styling.                   |
+| default | `{ classes: { item } }`  | Default slot used if no `item` slot is defined.                              |
+| `item`    | `{ item, index }` | Slot used to render each data item. Scoped props include `item` and `index`. |
