@@ -10,6 +10,7 @@ description: A guide to using the modal component.
 > * **v-click-outside** – a directive used to close the modal when clicking outside of the card. [Follow the installation guide here](https://www.npmjs.com/package/v-click-outside).
 > * **Container** – a layout wrapper component used when `withContainer` is set to `true`. [Read the integration guide here](/components/container).
 > * **Card** – used to render the modal content within a styled card layout. [Read the integration guide here](/components/card).
+> * **@vueuse/motion** – used for the modal's enter animation with `v-motion-slide-top`. [Follow the installation guide here](https://www.npmjs.com/package/v-click-outside).
 
 ---
 
