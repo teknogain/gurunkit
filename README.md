@@ -1,27 +1,9 @@
-- [x] Fix Card `shadow` props invalid type
-- [x] Card `striped` props
-- [x] Card `paddless` props
-- [x] Container `maxScreen` props
-- [ ] Table item `index` 
-- [x] Input component
-- [x] Select component
-- [x] Button `disabled` props
-- [x] Button `type` props
-- [ ] Alert Component
-- [x] Spinner Component
-- [x] Button transparent gray color
-- [ ] Base modal
-- [ ] Base confirm
-- [x] Button fullwidth
-- [x] Button icon
+- [ ] Modal Component
 - [ ] Confirm Component
 - [ ] Navbar Component
 - [ ] List Component
 - [ ] Pagination Component
-- [ ] Form Input Component
-- [ ] Select search component
-- [ ] Dropdown component
-- [x] Alert close button
-- [x] Button loading
-- [x] Button icon only
+- [ ] Form Item Component
+- [ ] Select search Component
+- [ ] Dropdown Component
 - [ ] Utility debounce
