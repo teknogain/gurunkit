@@ -1,6 +1,6 @@
 - [x] Modal Component
 - [x] Confirm Component
-- [ ] Navbar Component
+- [x] Navbar Component
 - [ ] List Component
 - [ ] Pagination Component
 - [ ] Form Item Component
