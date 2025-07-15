@@ -17,8 +17,8 @@ description: A guide to using the modal component.
 
 ```vue
 <script setup>
-import Container from './container.vue';
-import Card from './card.vue';
+import Container from './Container.vue';
+import Card from './Card.vue';
 import { Icon } from '@iconify/vue';
 import { watch } from 'vue';
 

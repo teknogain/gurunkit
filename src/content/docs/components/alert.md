@@ -17,7 +17,7 @@ description: A guide to using the alert component.
 <script setup>
 import { computed } from 'vue';
 import { Icon } from '@iconify/vue';
-import Spinner from './spinner.vue';
+import Spinner from './Spinner.vue';
 
 const props = defineProps({
   color: {
