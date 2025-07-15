@@ -4,7 +4,7 @@
 - [x] Container `maxScreen` props
 - [ ] Table item `index` 
 - [x] Input component
-- [ ] Select component
+- [x] Select component
 - [x] Button `disabled` props
 - [x] Button `type` props
 - [ ] Alert Component
@@ -24,3 +24,4 @@
 - [x] Alert close button
 - [x] Button loading
 - [x] Button icon only
+- [ ] Utility debounce
