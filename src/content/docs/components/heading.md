@@ -64,7 +64,7 @@ const titleSize = computed(() => {
 | `title` | String | —       | Yes    | The text content of the title heading.                                    |
 | `level` | Number | `1`     | No     | Defines the heading level (`1` to `6`). Determines which HTML tag to use. |
 
-## Slot
+## Slots
 
 | Slot | Description                                                  |
 | --------- | ------------------------------------------------------------ |

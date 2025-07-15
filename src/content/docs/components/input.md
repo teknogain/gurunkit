@@ -70,7 +70,7 @@ This component uses `v-model` to bind its value, which makes it reactive and eas
 | `input-debounce` | Fired with a 500ms delay after user input stops (debounced event).         |
 | *native events*  | All native `<input>` events like `focus`, `blur`, `keydown` are forwarded. |
 
-## Slot
+## Slots
 
 This component does not use any slots.
 
