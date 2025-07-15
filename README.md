@@ -3,12 +3,12 @@
 - [x] Card `paddless` props
 - [x] Container `maxScreen` props
 - [ ] Table item `index` 
-- [ ] Input component
+- [x] Input component
 - [ ] Select component
 - [x] Button `disabled` props
 - [x] Button `type` props
 - [ ] Alert Component
-- [ ] Spinner Component
+- [x] Spinner Component
 - [x] Button transparent gray color
 - [ ] Base modal
 - [ ] Base confirm

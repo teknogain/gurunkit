@@ -61,8 +61,6 @@ const color = computed(() => {
 | ------- | ------ | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `color` | String | `'white'` | Sets the spinner color variant. Available options: `'blue'`, `'white'`, `'yellow'`, `'green'`, `'red'`. The `text-*` color affects the ring and `fill-*` the inner stroke. |
 
----
-
 ## Slot
 
 This component does **not** have any slots.

@@ -51,8 +51,6 @@ const containerClass = computed(() => {
 | ----------- | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
 | `maxScreen` | String | (Optional) Determines the maximum container width at specific breakpoints. <br>Accepted values: `'sm'`, `'md'`, `'lg'`, `'xl'`. |
 
----
-
 ## Slot
 
 | Slot    | Description                                      |

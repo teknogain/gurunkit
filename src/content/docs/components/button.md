@@ -11,8 +11,6 @@ description: A guide to using the button component.
 
 ---
 
----
-
 ## Base Component
 
 ```vue
@@ -128,8 +126,6 @@ const size = computed(() => {
 | `loading`   | Boolean | `false`     | If `true`, replaces content with a spinner and disables the button.                                                                                              |
 | `disabled`  | Boolean | `false`     | Disables the button if `true`.                                                                                                                                   |
 | `iconOnly`  | Boolean | `false`     | If `true`, the button becomes square and only shows the icon or spinner.                                                                                         |
-
----
 
 ## Slot
 
