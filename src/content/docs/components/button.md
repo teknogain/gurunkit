@@ -5,9 +5,8 @@ description: A guide to using the button component.
 
 `Button` is a reusable and highly customizable button component. It supports multiple sizes and color variants, optional icons or loading spinners, full-width display, and icon-only mode. It is designed to work well with Tailwind CSS utility classes and integrates with the [Iconify](https://iconify.design/) icon system.
 
-
 > **Note:** This component relies on two external components to function properly:
-> * **Iconify** – used to render icons via the `icon` prop. [Follow the installation guide here](/components/icon).
+> * **Iconify** – used to render icons via the `icon` prop. [Follow the installation guide here](https://iconify.design/docs/icon-components/vue/).
 > * **Spinner component (`Spinner.vue`)** – used to show a loading indicator when the `loading` prop is active. [Read the integration guide here](/components/spinner).
 
 ---
@@ -34,8 +33,8 @@ const props = defineProps({
         'yellow',
         'green',
         'red',
-        'transparent-gray',
-        'white-bordered',
+        'transparent',
+        'bordered',
       ].includes(value),
   },
   size: {
@@ -62,9 +61,9 @@ const color = computed(() => {
     yellow: 'bg-yellow-600 text-white hover:bg-yellow-700',
     green: 'bg-green-600 text-white hover:bg-green-700',
     red: 'bg-red-600 text-white hover:bg-red-700',
-    'transparent-gray':
+    transparent:
       'text-gray-900 hover:bg-gray-100 hover:border hover:border-gray-200',
-    'white-bordered':
+    bordered:
       'bg-white border border-gray-300 text-gray-900 hover:bg-gray-50',
   }[props.color || 'gray'];
 });
@@ -74,11 +73,11 @@ const spinnerColor = computed(() => {
     gray: 'white',
     blue: 'blue',
     white: 'white',
-    yellow: 'white',
-    green: 'white',
+    yellow: 'yellow',
+    green: 'green',
     red: 'red',
-    'transparent-gray': 'white',
-    'white-bordered': 'white',
+    transparent: 'white',
+    bordered: 'white',
   }[props.color || 'gray'];
 });
 
@@ -121,7 +120,7 @@ const size = computed(() => {
 
 | Prop        | Type    | Default     | Description                                                                                                                                                      |
 | ----------- | ------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `color`     | String  | `'gray'`    | Determines the button color variant. Acceptable values: `'gray'`, `'blue'`, `'white'`, `'yellow'`, `'green'`, `'red'`, `'transparent-gray'`, `'white-bordered'`. |
+| `color`     | String  | `'gray'`    | Determines the button color variant. Acceptable values: `'gray'`, `'blue'`, `'white'`, `'yellow'`, `'green'`, `'red'`, `'transparent'`, `'bordered'`. |
 | `size`      | String  | `'md'`      | Determines the button size. Acceptable values: `'sm'`, `'md'`, `'lg'`.                                                                                           |
 | `type`      | String  | `'button'`  | The native button type (`button`, `submit`, `reset`).                                                                                                            |
 | `fullwidth` | Boolean | `false`     | If `true`, makes the button take full width of the container.                                                                                                    |
