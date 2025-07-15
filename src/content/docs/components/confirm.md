@@ -6,9 +6,9 @@ description: A guide to using the confirm component.
 `Confirm` is a self-contained component used to prompt the user for confirmation. It displays a title, message, and two buttons: confirm and cancel. The confirm button supports a loading state and custom colors. The component emits an event when the user confirms the action.
 
 > **Note:** This component relies on the following external components to function properly:
-> * **Modal** – used as the underlying modal wrapper. Must be implemented or imported manually. [Read the integration guide here](/components/modal).
-> * **Heading** – used to render the modal title. Must be implemented or imported manually. [Read the integration guide here](/components/heading).
-> * **Button** – used for both confirm and cancel actions. Must be implemented or imported manually. [Read the integration guide here](/components/button).
+> * **Modal** – used as the underlying modal wrapper. [Read the integration guide here](/components/modal).
+> * **Heading** – used to render the modal title. [Read the integration guide here](/components/heading).
+> * **Button** – used for both confirm and cancel actions. [Read the integration guide here](/components/button).
 
 ---
 

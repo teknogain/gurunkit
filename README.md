@@ -4,6 +4,6 @@
 - [x] List Component
 - [x] Pagination Component
 - [x] Form Item Component
-- [ ] Select search Component
-- [ ] Dropdown Component
+- [x] Select search Component
+- [x] Dropdown Component
 - [ ] Utility debounce
