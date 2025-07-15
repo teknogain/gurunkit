@@ -3,7 +3,7 @@
 - [x] Navbar Component
 - [x] List Component
 - [x] Pagination Component
-- [ ] Form Item Component
+- [x] Form Item Component
 - [ ] Select search Component
 - [ ] Dropdown Component
 - [ ] Utility debounce
