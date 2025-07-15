@@ -1,4 +1,4 @@
-- [ ] Modal Component
+- [x] Modal Component
 - [ ] Confirm Component
 - [ ] Navbar Component
 - [ ] List Component
