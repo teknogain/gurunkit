@@ -1,9 +1,1 @@
-- [x] Modal Component
-- [x] Confirm Component
-- [x] Navbar Component
-- [x] List Component
-- [x] Pagination Component
-- [x] Form Item Component
-- [x] Select search Component
-- [x] Dropdown Component
-- [ ] Utility debounce
+# Sesui
