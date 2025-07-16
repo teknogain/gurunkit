@@ -18,8 +18,8 @@ export default defineConfig({
 					autogenerate: { directory: 'components' }
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'Utils',
+					autogenerate: { directory: 'utils' },
 				},
 			],
 		}),

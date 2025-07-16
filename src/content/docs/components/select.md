@@ -6,7 +6,7 @@ description: A guide to using the select component.
 `Select` is a reusable `<select>` component with styling, sizing, color theming, and optional debounced `change` event. Suitable for use in forms, filters, or dropdown selections.
 
 > **Note:** This component relies on the following external components to function properly:
-> * **debounce** – used to debounce the `change` event. [Read the integration guide here](/utility/debounce).
+> * **debounce** – used to debounce the `change` event. [Read the integration guide here](/utils/debounce).
 
 ---
 

@@ -5,7 +5,7 @@
 > * **Container** – xxx. [Read the integration guide here](/components/container).
 > * **click-outside-vue3** – used to close the xxx when clicking outside of the xxx. [Follow the installation guide here](https://www.npmjs.com/package/click-outside-vue3).
 > * **@vueuse/motion** – used for the xxx's enter animation. [Follow the installation guide here](https://motion.vueuse.org/getting-started/introduction).
-> * **debounce** – used to debounce the `xxx` event. [Read the integration guide here](/utility/debounce).
+> * **debounce** – used to debounce the `xxx` event. [Read the integration guide here](/utils/debounce).
 > * **Vue Router** – xxx. [Follow the installation guide here](https://router.vuejs.org/installation.html).
 
 [Follow the installation guide here](https://iconify.design/docs/icon-components/vue/)

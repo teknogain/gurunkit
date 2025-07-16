@@ -6,7 +6,7 @@ description: A guide to using the input component.
 `Input` is a simple and reusable text input component with support for `v-model`, fullwidth layout, and built-in debounced input handling. It's designed to be flexible and lightweight for use in forms, search fields, or filters.
 
 > **Note:** This component relies on the following external components to function properly:
-> * **debounce** – used to debounce the `input` event. [Read the integration guide here](/utility/debounce).
+> * **debounce** – used to debounce the `input` event. [Read the integration guide here](/utils/debounce).
 
 ---
 
