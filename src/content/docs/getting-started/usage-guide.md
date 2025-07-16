@@ -1,6 +1,6 @@
 ---
 title: Usage Guide
-description: How to use components from SesUI
+description: How to use components from Gurun Kit
 ---
 
 ## Install Vue

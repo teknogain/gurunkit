@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gurunkit.teknogain.com/sitemap-index.xml
