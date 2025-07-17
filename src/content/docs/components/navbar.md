@@ -17,24 +17,63 @@ description: A guide to using the navbar component.
 
 ```vue
 <script setup>
-import { ref, useTemplateRef } from 'vue';
-import Container from './Container.vue';
+import { computed, ref, useTemplateRef } from 'vue';
+import BaseContainer from './BaseContainer.vue';
 import { Icon } from '@iconify/vue';
 import { useRouter } from 'vue-router';
 
-defineProps({
+const props = defineProps({
   containerProps: null,
   menus: {
     type: Array,
     default: () => ([])
   },
   activeMenu: String,
+  brand: String,
+  bordered: {
+    type: Boolean,
+    default: true
+  },
+  menuCenter: Boolean,
+  classes: {
+    type: Object,
+    default: () => ({
+      menuDefault: '',
+      menuActive: ''
+    })
+  }
 });
 
 const router = useRouter();
 
 const toggleSidebarButton = useTemplateRef('toggle-button');
 const mobileSidebarVisible = ref(false);
+
+const colorClass = {
+  nav: {
+    text: 'text-stone-900',
+    border: 'border-stone-300'
+  },
+  toggle: 'text-stone-900',
+  sidebar: {
+    border: 'border-stone-300'
+  },
+  menu: {
+    default: ['sm:text-stone-900 sm:hover:text-amber-800 sm:hover:bg-transparent', props.classes.menuDefault],
+    active: ['sm:bg-transparent sm:text-amber-800', props.classes.menuActive]
+  },
+  sidebarMenu: {
+    default: 'rounded-md text-stone-900 hover:bg-stone-100',
+    active: 'rounded-md bg-amber-800 text-white'
+  }
+}
+const menusDynamicPositionClass = computed(() => {
+  if (mobileSidebarVisible.value) {
+    return ['left-0', props.menuCenter ? 'sm:left-1/2 sm:-translate-x-1/2' : 'sm:left-0']
+  }
+
+  return ['-left-full', props.menuCenter ? 'sm:left-1/2 sm:-translate-x-1/2' : 'sm:left-0']
+}) 
 
 function onClickOutsideSidebar(e) {
   if (!toggleSidebarButton.value.contains(e.target)) {
@@ -47,44 +86,51 @@ router.afterEach(() => (mobileSidebarVisible.value = false));
 
 <template>
   <nav
-    class="h-14 bg-white border-b border-gray-300 text-gray-900 flex items-center lg:h-16"
+    :class="['h-14 bg-white flex items-center lg:h-16', colorClass.nav.text, bordered ? ['border-b', colorClass.nav.border] : '',]"
   >
-    <Container
-      class="flex items-center justify-between"
+    <BaseContainer
+      :class="['flex items-center justify-between', menuCenter ? 'relative' : '']"
       v-bind="containerProps"
     >
       <slot name="start">
         <button
           ref="toggle-button"
-          class="cursor-pointer text-gray-900 flex items-center sm:hidden"
+          :class="['cursor-pointer flex items-center sm:hidden', colorClass.toggle]"
           @click="mobileSidebarVisible = true"
         >
           <Icon icon="tabler:menu-2" />
         </button>
-        <div
-          v-click-outside="onClickOutsideSidebar"
-          :class="[
-            'fixed bg-white top-0 h-screen flex flex-col w-48 z-10 border-r border-gray-300 p-3 transition-all sm:static sm:bg-transparent sm:border-0 sm:h-auto sm:w-auto sm:p-0 sm:flex-row sm:items-center sm:gap-4',
-            mobileSidebarVisible ? 'left-0' : '-left-full',
-          ]"
-        >
-          <router-link
-            v-for="menu in menus"
-            :key="menu.id"
-            :to="menu.to"
+        <div class="flex items-center gap-4">
+          <a v-if="brand" href="" class="font-bold text-lg">{{ brand }}</a>
+          <div
+            v-click-outside="onClickOutsideSidebar"
             :class="[
-              'relative px-3 py-2 sm:p-0',
-              activeMenu === menu.id
-                ? 'bg-blue-600 text-white rounded-md font-bold sm:bg-transparent sm:text-blue-600'
-                : 'text-gray-900 hover:bg-gray-100 sm:hover:bg-transparent sm:hover:text-blue-600',
+              'fixed bg-white top-0 h-screen flex flex-col w-48 z-20 border-r p-3 transition-all sm:bg-transparent sm:border-0 sm:h-auto sm:w-auto sm:p-0 sm:flex-row sm:items-center sm:gap-4',
+              menusDynamicPositionClass,
+              colorClass.sidebar.border,
+              menuCenter ? 'sm:absolute' : 'sm:static'
             ]"
           >
-            {{ menu.name }}
-          </router-link>
+            <component
+              v-for="menu in menus"
+              :key="menu.id"
+              :is="menu.to ? 'router-link' : 'a'"
+              :href="menu.href"
+              :to="menu.to"
+              :class="[
+                'relative px-3 py-2 sm:p-0',
+                activeMenu === menu.id
+                  ? ['font-bold', colorClass.sidebarMenu.active, colorClass.menu.active]
+                  : [colorClass.sidebarMenu.default, colorClass.menu.default],
+              ]"
+            >
+              {{ menu.name }}
+            </component>
+          </div>
         </div>
       </slot>
       <slot name="end" />
-    </Container>
+    </BaseContainer>
   </nav>
 </template>
 ```
