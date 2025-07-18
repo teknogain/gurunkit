@@ -27,7 +27,10 @@ defineProps({
     default: true,
   },
   paddless: Boolean,
+  dimmed: Boolean
 });
+
+const dimmedColor = 'bg-stone-100'
 </script>
 
 <template>
@@ -36,7 +39,7 @@ defineProps({
       bordered ? 'border border-gray-300' : '',
       shadow ? 'shadow-md' : '',
       rounded ? 'rounded-md' : '',
-      'bg-white',
+      dimmed ? dimmedColor :'bg-white',
     ]"
   >
     <div
