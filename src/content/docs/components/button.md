@@ -15,7 +15,7 @@ description: A guide to using the button component.
 
 ```vue
 <script setup>
-import Spinner from './Spinner.vue';
+import BaseSpinner from './BaseSpinner.vue';
 import { Icon } from '@iconify/vue';
 import { computed } from 'vue';
 
@@ -31,6 +31,7 @@ const props = defineProps({
         'yellow',
         'green',
         'red',
+        'amber',
         'transparent',
         'bordered',
       ].includes(value),
@@ -49,20 +50,31 @@ const props = defineProps({
   loading: Boolean,
   disabled: Boolean,
   iconOnly: Boolean,
+  responsive: Boolean,
+  iconPosition: {
+    type: String,
+    default: 'start',
+    validator: (value) => ['start', 'end'].includes(value),
+  },
+  customColor: Boolean
 });
 
 const color = computed(() => {
+  if (props.customColor) {
+    return ''
+  }
   return {
     gray: 'bg-gray-100 text-gray-900 border border-gray-200 hover:bg-gray-200 hover:border-gray-300',
     blue: 'bg-blue-600 text-white hover:bg-blue-700',
-    white: 'bg-white text-gray-900 hover:bg-gray-50',
+    white: 'bg-white text-stone-900 hover:bg-stone-50',
     yellow: 'bg-yellow-600 text-white hover:bg-yellow-700',
     green: 'bg-green-600 text-white hover:bg-green-700',
     red: 'bg-red-600 text-white hover:bg-red-700',
+    amber: 'bg-amber-600 text-white hover:bg-amber-700',
     transparent:
       'text-gray-900 hover:bg-gray-100 hover:border hover:border-gray-200',
     bordered:
-      'bg-white border border-gray-300 text-gray-900 hover:bg-gray-50',
+      'bg-white border border-stone-300 text-stone-900 hover:bg-stone-50',
   }[props.color || 'gray'];
 });
 
@@ -80,11 +92,22 @@ const spinnerColor = computed(() => {
 });
 
 const size = computed(() => {
-  return {
+  const defaultSizes = {
     sm: ['h-8 text-sm', props.iconOnly ? 'w-8' : 'px-3'],
     md: ['h-10', props.iconOnly ? 'w-10' : 'px-4'],
     lg: ['h-12 text-lg', props.iconOnly ? 'w-12' : 'px-5'],
-  }[props.size || 'md'];
+  }
+  const responsiveSizes = {
+    sm: defaultSizes.sm,
+    md: defaultSizes.md,
+    lg: ['h-10 xl:h-12 xl:text-lg', props.iconOnly ? 'w-10 xl:w-12' : 'px-4 xl:px-5'],
+  }
+
+  if (props.responsive) {
+    return responsiveSizes[props.size || 'md']
+  }
+  
+  return defaultSizes[props.size || 'md'];
 });
 </script>
 
@@ -99,15 +122,19 @@ const size = computed(() => {
       fullwidth ? 'w-full' : '',
     ]"
   >
-    <Spinner
+    <BaseSpinner
       v-if="loading"
       :color="spinnerColor"
     />
     <Icon
-      v-else-if="icon"
+      v-if="!loading && icon && iconPosition === 'start'"
       :icon="icon"
     />
     <slot v-if="!iconOnly" />
+    <Icon
+      v-if="!loading && icon && iconPosition === 'end'"
+      :icon="icon"
+    />
   </button>
 </template>
 ```
