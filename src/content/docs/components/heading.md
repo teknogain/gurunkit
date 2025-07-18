@@ -23,10 +23,22 @@ const props = defineProps({
     default: 1,
     validator: (value) => value >= 1 && value <= 6,
   },
+  customSize: Boolean,
+  classes: {
+    type: Object,
+    default: () => ({
+      title: ''
+    })
+  },
+  responsive: {
+    type: Boolean,
+    default: true
+  }
 });
 
 const tagName = computed(() => 'h' + props.level);
 const titleSize = computed(() => {
+  if (props.customSize) { return '' }
   const sizes = {
     1: 'text-5xl',
     2: 'text-4xl',
@@ -38,18 +50,24 @@ const titleSize = computed(() => {
 
   return sizes[props.level] || 'text-base';
 });
+const colorClass = {
+    title: 'text-stone-900'
+}
+const titleClass = computed(() => ['font-bold', titleSize.value, colorClass.title, props.classes.title])
 </script>
 
 <template>
   <div
-    class="flex flex-col gap-4 sm:gap-2 sm:flex-row sm:items-center sm:justify-between"
+    :class="['flex', responsive ? 'flex-col gap-4 sm:gap-2 sm:flex-row sm:items-center sm:justify-between' : 'items-center justify-between']"
   >
-    <component
-      :is="tagName"
-      :class="['font-bold text-gray-900', titleSize]"
-    >
-      {{ title }}
-    </component>
+    <slot name="title" :title="title" :classes="{ title: titleClass }">    
+        <component
+            :is="tagName"
+            :class="titleClass"
+        >
+            {{ title }}
+        </component>
+    </slot>
     <slot name="action" />
   </div>
 </template>
