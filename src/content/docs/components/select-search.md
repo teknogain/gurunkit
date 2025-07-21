@@ -19,7 +19,7 @@ description: A guide to using the select search component.
 ```vue
 <script setup>
 import { Icon } from '@iconify/vue';
-import BaseInput from 'src/components/base/Input.vue';
+import Input from 'src/components/base/Input.vue';
 import Spinner from 'src/components/base/Spinner.vue';
 import { ref, useTemplateRef, watch } from 'vue';
 
@@ -164,7 +164,7 @@ watch(visible, (newVisible) => {
     class="relative"
   >
     <div class="relative">
-      <base-input
+      <Input
         ref="search-input"
         v-model="search"
         fullwidth

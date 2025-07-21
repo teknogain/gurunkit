@@ -33,12 +33,12 @@ const visible = ref(false);
 const classes = computed(() => {
   return {
     content: [
-      'absolute top-8 right-0 w-fit bg-white rounded-md border z-10 border-stone-300',
+      'absolute top-8 right-0 w-fit bg-white rounded-md border z-10 border-gray-300',
       props.customWidth ? '' : 'min-w-40',
       props.customClass.content,
     ],
-    header: 'px-3 py-2 border-b border-stone-300',
-    option: 'w-full text-left px-3 py-2 text-stone-900 hover:bg-stone-50',
+    header: 'px-3 py-2 border-b border-gray-300',
+    option: 'w-full text-left px-3 py-2 text-gray-900 hover:bg-gray-50',
   };
 });
 

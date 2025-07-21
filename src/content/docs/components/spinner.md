@@ -22,7 +22,7 @@ const props = defineProps({
   },
 });
 
-const color = computed(() => {
+const colorClass = computed(() => {
   return {
     white: 'text-gray-200 fill-blue-600',
     blue: 'text-blue-200 fill-blue-600',
@@ -36,7 +36,7 @@ const color = computed(() => {
 <template>
   <svg
     aria-hidden="true"
-    :class="['animate-spin w-4 h-4', color]"
+    :class="['animate-spin w-4 h-4', colorClass]"
     viewBox="0 0 100 101"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
