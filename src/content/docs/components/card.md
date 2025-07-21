@@ -27,6 +27,7 @@ defineProps({
     default: true,
   },
   paddless: Boolean,
+  dimmed: Boolean,
 });
 </script>
 
@@ -36,7 +37,7 @@ defineProps({
       bordered ? 'border border-gray-300' : '',
       shadow ? 'shadow-md' : '',
       rounded ? 'rounded-md' : '',
-      'bg-white',
+      dimmed ? 'bg-gray-100' : 'bg-white',
     ]"
   >
     <div
