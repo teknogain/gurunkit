@@ -74,7 +74,6 @@ defineExpose({ input });
     type="text"
     :class="[
       'bg-white border border-gray-300 text-gray-900 appearance-none focus:outline-blue-600 disabled:bg-gray-100',
-      colorClass,
       sizeClass,
       widthClass,
     ]"
