@@ -18,6 +18,10 @@ const props = defineProps({
     type: String,
     validator: (val) => ['sm', 'md', 'lg', 'xl'].includes(val),
   },
+  tag: {
+    type: String,
+    default: 'div',
+  },
 });
 
 const containerClass = computed(() => {
@@ -37,9 +41,12 @@ const containerClass = computed(() => {
 </script>
 
 <template>
-  <div :class="['container mx-auto px-4 sm:px-6 lg:px-8', containerClass]">
+  <component
+    :is="tag"
+    :class="['container mx-auto px-4 sm:px-6 lg:px-8', containerClass]"
+  >
     <slot />
-  </div>
+  </component>
 </template>
 ```
 
