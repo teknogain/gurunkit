@@ -49,9 +49,19 @@ const props = defineProps({
   loading: Boolean,
   disabled: Boolean,
   iconOnly: Boolean,
+  responsive: Boolean,
+  iconPosition: {
+    type: String,
+    default: 'start',
+    validator: (value) => ['start', 'end'].includes(value),
+  },
+  customColor: Boolean,
 });
 
-const color = computed(() => {
+const colorClass = computed(() => {
+  if (props.customColor) {
+    return '';
+  }
   return {
     gray: 'bg-gray-100 text-gray-900 border border-gray-200 hover:bg-gray-200 hover:border-gray-300',
     blue: 'bg-blue-600 text-white hover:bg-blue-700',
@@ -79,12 +89,26 @@ const spinnerColor = computed(() => {
   }[props.color || 'gray'];
 });
 
-const size = computed(() => {
-  return {
+const sizeClass = computed(() => {
+  const defaultSizes = {
     sm: ['h-8 text-sm', props.iconOnly ? 'w-8' : 'px-3'],
     md: ['h-10', props.iconOnly ? 'w-10' : 'px-4'],
     lg: ['h-12 text-lg', props.iconOnly ? 'w-12' : 'px-5'],
-  }[props.size || 'md'];
+  };
+  const responsiveSizes = {
+    sm: defaultSizes.sm,
+    md: defaultSizes.md,
+    lg: [
+      'h-10 xl:h-12 xl:text-lg',
+      props.iconOnly ? 'w-10 xl:w-12' : 'px-4 xl:px-5',
+    ],
+  };
+
+  if (props.responsive) {
+    return responsiveSizes[props.size || 'md'];
+  }
+
+  return defaultSizes[props.size || 'md'];
 });
 </script>
 
@@ -93,9 +117,9 @@ const size = computed(() => {
     :type="type"
     :disabled="disabled || loading"
     :class="[
-      color,
-      size,
       'rounded-md font-medium cursor-pointer inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed',
+      colorClass,
+      sizeClass,
       fullwidth ? 'w-full' : '',
     ]"
   >
@@ -104,10 +128,14 @@ const size = computed(() => {
       :color="spinnerColor"
     />
     <Icon
-      v-else-if="icon"
+      v-if="!loading && icon && iconPosition === 'start'"
       :icon="icon"
     />
     <slot v-if="!iconOnly" />
+    <Icon
+      v-if="!loading && icon && iconPosition === 'end'"
+      :icon="icon"
+    />
   </button>
 </template>
 ```
