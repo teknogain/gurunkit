@@ -14,16 +14,48 @@ description: A guide to using the input component.
 
 ```vue
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { debounce } from 'src/utils/debounce'; // ← required utility
 
-defineProps({
+const props = defineProps({
   fullwidth: Boolean,
+  size: {
+    type: String,
+    default: 'md',
+    validator: (value) => ['sm', 'md', 'lg'].includes(value),
+  },
+  width: {
+    type: String,
+    default: 'auto',
+    validator: (value) => ['auto', 'fit', 'full'].includes(value),
+  },
 });
 const emit = defineEmits(['input', 'input-debounce']);
 
 const value = defineModel();
 const input = ref();
+
+const sizeClass = computed(() => {
+  const sizes = {
+    sm: 'h-8 text-sm px-2 rounded',
+    md: 'h-10 px-2.5 rounded-md',
+  };
+
+  return sizes[props.size];
+});
+const widthClass = computed(() => {
+  const widths = {
+    auto: '',
+    fit: 'w-fit',
+    full: 'w-full',
+  };
+
+  if (props.fullwidth) {
+    return widths.full;
+  }
+
+  return widths[props.width];
+});
 
 const onInputDebounce = debounce(() => emit('input-debounce'), 500);
 
@@ -41,8 +73,10 @@ defineExpose({ input });
     v-model="value"
     type="text"
     :class="[
-      'bg-white border border-gray-300 h-10 px-2.5 rounded-md appearance-none text-gray-900 focus:outline-blue-600 disabled:bg-gray-100',
-      fullwidth ? 'w-full' : '',
+      'bg-white border border-gray-300 text-gray-900 appearance-none focus:outline-blue-600 disabled:bg-gray-100',
+      colorClass,
+      sizeClass,
+      widthClass,
     ]"
     @input="onInput"
   >
