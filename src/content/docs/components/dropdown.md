@@ -15,16 +15,32 @@ description: A guide to using the dropdown component.
 
 ```vue
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
-defineProps({
-  options: {
-    type: Array,
-    required: true,
+const props = defineProps({
+  options: Array,
+  customWidth: Boolean,
+  customClass: {
+    type: Object,
+    default: () => ({
+      content: '',
+    }),
   },
 });
 
 const visible = ref(false);
+
+const classes = computed(() => {
+  return {
+    content: [
+      'absolute top-8 right-0 w-fit bg-white rounded-md border z-10 border-stone-300',
+      props.customWidth ? '' : 'min-w-40',
+      props.customClass.content,
+    ],
+    header: 'px-3 py-2 border-b border-stone-300',
+    option: 'w-full text-left px-3 py-2 text-stone-900 hover:bg-stone-50',
+  };
+});
 
 function onClose() {
   visible.value = false;
@@ -44,26 +60,25 @@ function onToggle() {
       v-if="visible"
       v-motion-slide-top
       v-click-outside="onClose"
-      class="absolute top-8 right-0 min-w-40 w-fit bg-white rounded-md border border-gray-300 z-10"
+      :class="classes.content"
     >
       <slot
         name="header"
-        :classes="{ header: 'px-3 py-2 border-b border-gray-300' }"
+        :classes="classes"
       />
       <div class="py-1">
-        <div
-          v-for="option in options"
-          :key="option.id"
-        >
-          <slot
-            name="option"
-            :option="option"
-            :classes="{
-              option:
-                'w-full text-left px-3 py-2 text-gray-900 hover:bg-gray-50',
-            }"
-          />
-        </div>
+        <slot :classes="classes">
+          <div
+            v-for="option in options"
+            :key="option.id"
+          >
+            <slot
+              name="option"
+              :option="option"
+              :classes="classes"
+            />
+          </div>
+        </slot>
       </div>
     </div>
   </div>
