@@ -18,6 +18,10 @@ const props = defineProps({
     type: String,
     validator: (val) => ['sm', 'md', 'lg', 'xl'].includes(val),
   },
+  tag: {
+    type: String,
+    default: 'div',
+  },
 });
 
 const containerClass = computed(() => {
@@ -37,19 +41,21 @@ const containerClass = computed(() => {
 </script>
 
 <template>
-  <div :class="['container mx-auto px-4 sm:px-6 lg:px-8', containerClass]">
+  <component
+    :is="tag"
+    :class="['container mx-auto px-4 sm:px-6 lg:px-8', containerClass]"
+  >
     <slot />
-  </div>
+  </component>
 </template>
 ```
 
----
-
 ## Props
 
-| Prop        | Type   | Default  | Description |
-| ----------- | ------ | -------- | ----------- |
-| `maxScreen` | String | — | (Optional) Determines the maximum container width at specific breakpoints. <br>Accepted values: `'sm'`, `'md'`, `'lg'`, `'xl'`. |
+| Prop        | Type   | Default | Description                                                                                                                  |
+| ----------- | ------ | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `maxScreen` | String | —       | Determines the maximum container width at specific breakpoints. <br>Accepted values: `'sm'`, `'md'`, `'lg'`, `'xl'`.         |
+| `tag`       | String | `'div'` | Specifies the HTML tag or component to render as the container.                                                              |
 
 ## Slots
 
