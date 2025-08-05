@@ -74,6 +74,10 @@ const classes = computed(() => {
           />
         </div>
       </slot>
+      <slot
+        name="footer"
+        :classes="{ item: classes.item }"
+      />
     </div>
   </Card>
 </template>
@@ -93,8 +97,9 @@ const classes = computed(() => {
 
 ## Slots
 
-| Slot | Props    | Description                                                                  |
-| --------- | --------------- | ---------------------------------------------------------------------------- |
-| `header`  | `{ classes: { item } }`  | Slot for custom header content, aligned with item styling.                   |
-| default | `{ classes: { item } }`  | Default slot used if no `item` slot is defined.                              |
-| `item`    | `{ item, index }` | Slot used to render each data item. Scoped props include `item` and `index`. |
+| Slot      | Props                   | Description                                                                  |
+| --------- | ----------------------- | ---------------------------------------------------------------------------- |
+| `header`  | `{ classes: { item } }` | Slot for custom header content, aligned with item styling.                   |
+| `footer`  | `{ classes: { item } }` | Slot for custom footer content, aligned with item styling.                   |
+| `default` | `{ classes: { item } }` | Default slot used if no `item` slot is defined.                              |
+| `item`    | `{ item, index }`       | Slot used to render each data item. Scoped props include `item` and `index`. |
