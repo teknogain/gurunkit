@@ -13,6 +13,11 @@ description: A guide to using the card component.
 <script setup>
 defineProps({
   title: String,
+  titleResponsive: Boolean,
+  titleTag: {
+    type: String,
+    default: "h2",
+  },
   bordered: {
     type: Boolean,
     default: true,
@@ -27,6 +32,7 @@ defineProps({
     default: true,
   },
   paddless: Boolean,
+  dimmed: Boolean,
 });
 </script>
 
@@ -36,7 +42,7 @@ defineProps({
       bordered ? 'border border-gray-300' : '',
       shadow ? 'shadow-md' : '',
       rounded ? 'rounded-md' : '',
-      'bg-white',
+      dimmed ? 'bg-gray-100' : 'bg-white',
     ]"
   >
     <div
@@ -46,9 +52,15 @@ defineProps({
         'flex items-center justify-between',
       ]"
     >
-      <h2 class="text-xl font-bold">
+      <component
+        :is="titleTag"
+        :class="[
+          'font-bold',
+          titleResponsive ? 'text-lg lg:text-xl' : 'text-xl',
+        ]"
+      >
         {{ title }}
-      </h2>
+      </component>
 
       <slot name="action" />
     </div>
@@ -65,18 +77,19 @@ defineProps({
 </template>
 ```
 
----
-
 ## Props
 
-| Prop       | Type    | Default | Description                                                   |
-| ---------- | ------- | ------- | ------------------------------------------------------------- |
-| `title`    | String  | —       | Optional title displayed at the top section.                  |
-| `bordered` | Boolean | `true`  | Whether the card should have a border.                         |
-| `shadow`   | Boolean | `false` | Adds a shadow if `true`.                                      |
-| `rounded`  | Boolean | `true`  | Whether the card has rounded corners.                          |
-| `striped`  | Boolean | `true`  | Adds a bottom border under the title for separation.          |
-| `paddless` | Boolean | `false` | Removes default padding inside the card body if set to `true`. |
+| Prop              | Type    | Default | Description                                                            |
+| ----------------- | ------- | ------- | ---------------------------------------------------------------------- |
+| `title`           | String  | —       | Optional title displayed at the top section.                           |
+| `titleResponsive` | Boolean | `false` | If `true`, the title adapts to screen size responsively.               |
+| `titleTag`        | String  | `'h2'`  | The HTML tag used to render the title (e.g., `'h1'`, `'h2'`, `'div'`). |
+| `bordered`        | Boolean | `true`  | Whether the card should have a border.                                 |
+| `shadow`          | Boolean | `false` | Adds a shadow if `true`.                                               |
+| `rounded`         | Boolean | `true`  | Whether the card has rounded corners.                                  |
+| `striped`         | Boolean | `true`  | Adds a bottom border under the title for separation.                   |
+| `paddless`        | Boolean | `false` | Removes default padding inside the card body if set to `true`.         |
+| `dimmed`          | Boolean | `false` | If `true`, applies a dimmed background style to the card.              |
 
 ## Slots
 
