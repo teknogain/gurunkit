@@ -51,6 +51,9 @@ function onClose() {
 watch(visible, (newValue) => {
   if (newValue) {
     emit('opened');
+    document.body.classList.add('overflow-y-hidden');
+  } else {
+    document.body.classList.remove('overflow-y-hidden');
   }
 });
 </script>
@@ -59,7 +62,7 @@ watch(visible, (newValue) => {
   <div
     v-if="visible"
     :class="[
-      'fixed inset-0 bg-black/30 py-20 z-10',
+      'fixed inset-0 bg-black/30 py-20 z-10 overflow-y-auto',
       verticalCenter ? 'flex items-center' : '',
     ]"
   >
