@@ -7,6 +7,7 @@ description: A guide to using the select component.
 
 > **Note:** This component relies on the following external components to function properly:
 > * **debounce** – used to debounce the `change` event. [Read the integration guide here](/utils/debounce).
+> * **Iconify** – used to render the dropdown icon. [Follow the installation guide here](https://iconify.design/docs/icon-components/vue/).
 
 ---
 
@@ -130,17 +131,6 @@ function onChange() {
   </div>
 </template>
 ```
-
----
-
-## Props
-
-Berikut adalah tabel **Props** yang telah diperbarui dengan penambahan:
-
-* `fullwidth: Boolean`
-* `id: String`
-
----
 
 ## Props
 
