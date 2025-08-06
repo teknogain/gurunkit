@@ -1,6 +1,6 @@
 ---
 title: Sidebar  
-description: A guide to using the select component.
+description: A guide to using the sidebar component.
 ---
 
 `Sidebar` is a reusable vertical navigation component that displays a brand section and a list of menu items. Ideal for simple layouts like admin panels or dashboard side navigation.
