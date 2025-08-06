@@ -175,6 +175,7 @@ router.afterEach(() => (mobileSidebarVisible.value = false));
 | `brand`          | String  | —                                     | Optional brand name or logo text to display in the navbar.                  |
 | `brandRoute`     | Any     | —                                     | Route destination for the brand element. Can be a string or route object.   |
 | `bordered`       | Boolean | `true`                                | If `true`, applies a bottom border to the navbar.                           |
+| `menuCenter`     | Boolean | `false`                               | If `true`, applies horizontal center alignment to the menu items.           |
 | `customClass`    | Object  | `{ menuActive: '', menuDefault: '' }` | Custom classes for styling active and default menu items.                   |
 
 ## Slots
