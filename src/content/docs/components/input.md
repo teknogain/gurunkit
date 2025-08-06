@@ -59,7 +59,7 @@ const widthClass = computed(() => {
 });
 const classes = computed(() => {
   return [
-    'bg-white border border-gray-300 text-gray-900 appearance-none focus:outline-amber-600 disabled:bg-gray-100 read-only:bg-gray-50',
+    'bg-white border border-gray-300 text-gray-900 appearance-none focus:outline-blue-600 disabled:bg-gray-100 read-only:bg-gray-50',
     sizeClass.value,
     widthClass.value,
   ];

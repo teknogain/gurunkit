@@ -16,6 +16,7 @@ description: A guide to using the select component.
 <script setup>
 import { computed } from 'vue';
 import { debounce } from 'src/utils/debounce';
+import { Icon } from '@iconify/vue';
 
 const props = defineProps({
   options: {
@@ -32,21 +33,23 @@ const props = defineProps({
     default: 'white',
     validator: (value) =>
       [
-        'gray-filled',
-        'blue-filled',
-        'white',
-        'yellow-filled',
-        'green-filled',
-        'red-filled',
+        'secondary',
+        'primary',
+        'light',
+        'warning',
+        'success',
+        'error',
       ].includes(value),
   },
   debounced: Boolean,
+  fullwidth: Boolean,
+  id: String,
 });
 const emit = defineEmits(['change']);
 
 const selected = defineModel();
 
-const size = computed(() => {
+const sizeClass = computed(() => {
   return {
     sm: 'h-8 text-sm px-2 pr-10',
     md: 'h-10 px-2.5 pr-10',
@@ -54,19 +57,19 @@ const size = computed(() => {
   }[props.size || 'md'];
 });
 
-const color = computed(() => {
+const colorClass = computed(() => {
   return {
-    'gray-filled':
+    secondary:
       'bg-gray-50 text-gray-700 border-gray-700 focus:outline-gray-600',
-    'blue-filled':
+    primary:
       'bg-blue-50 text-blue-700 border-blue-700 focus:outline-blue-600',
-    white: 'bg-white text-gray-900 border-gray-300 focus:outline-blue-600',
-    'yellow-filled':
+    light: 'bg-white text-gray-900 border-gray-300 focus:outline-blue-600',
+    warning:
       'bg-yellow-50 text-yellow-700 border-yellow-700 focus:outline-yellow-600',
-    'green-filled':
+    success:
       'bg-green-50 text-green-700 border-green-700 focus:outline-green-600',
-    'red-filled': 'bg-red-50 text-red-700 border-red-700 focus:outline-red-600',
-  }[props.color || 'white'];
+    error: 'bg-red-50 text-red-700 border-red-700 focus:outline-red-600',
+  }[props.color || 'light'];
 });
 
 const chevronSize = computed(() => {
@@ -79,13 +82,13 @@ const chevronSize = computed(() => {
 
 const chevronColor = computed(() => {
   return {
-    'gray-filled': 'text-gray-700',
-    'blue-filled': 'text-blue-700',
-    white: 'text-gray-900',
-    'yellow-filled': 'text-yellow-700',
-    'green-filled': 'text-green-700',
-    'red-filled': 'text-red-700',
-  }[props.color || 'white'];
+    secondary: 'text-gray-700',
+    primary: 'text-blue-700',
+    light: 'text-gray-900',
+    warning: 'text-yellow-700',
+    success: 'text-green-700',
+    error: 'text-red-700',
+  }[props.color || 'light'];
 });
 
 const debounceEmitChange = debounce(() => emit('change'), 500);
@@ -100,10 +103,16 @@ function onChange() {
 </script>
 
 <template>
-  <div class="relative w-fit">
+  <div :class="['relative', fullwidth ? 'w-full' : 'w-fit']">
     <select
+      :id="id"
       v-model="selected"
-      :class="['border rounded-md appearance-none', size, color]"
+      :class="[
+        'border rounded-md appearance-none',
+        sizeClass,
+        colorClass,
+        fullwidth ? 'w-full' : 'w-auto',
+      ]"
       @change="onChange"
     >
       <option
@@ -114,20 +123,10 @@ function onChange() {
         {{ option.name }}
       </option>
     </select>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="1.5"
-      stroke="currentColor"
+    <Icon
+      icon="tabler:chevron-down"
       :class="[chevronSize, chevronColor]"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="m19.5 8.25-7.5 7.5-7.5-7.5"
-      />
-    </svg>
+    />
   </div>
 </template>
 ```
@@ -136,12 +135,23 @@ function onChange() {
 
 ## Props
 
-| Prop        | Type    | Default   | Description                                                               |
-| ----------- | ------- | --------- | ------------------------------------------------------------------------- |
-| `options`   | Array   | —         | List of select options. Each item must be an object with `id` and `name`. |
-| `size`      | String  | `'md'`    | Size of the select. Options: `'sm'`, `'md'`, `'lg'`.                      |
-| `color`     | String  | `'white'` | Visual theme variant. Supports `'white'`, `'*-filled'` options.           |
-| `debounced` | Boolean | `false`   | If `true`, the `change` event is debounced (500ms).                       |
+Berikut adalah tabel **Props** yang telah diperbarui dengan penambahan:
+
+* `fullwidth: Boolean`
+* `id: String`
+
+---
+
+## Props
+
+| Prop        | Type    | Default   | Description                                                                                                |
+| ----------- | ------- | --------- | -----------------------------------------------------------------------------------------------------------|
+| `options`   | Array   | —         | List of select options. Each item must be an object with `id` and `name`.                                  |
+| `size`      | String  | `'md'`    | Size of the select. Options: `'sm'`, `'md'`, `'lg'`.                                                       |
+| `color`     | String  | `'light'` | Visual theme variant. Options: `'secondary'`, `'primary'`, `'light'`, `'warning'`, `'success'`, `'error'`. |
+| `debounced` | Boolean | `false`   | If `true`, the `change` event is debounced (500ms).                                                        |
+| `fullwidth` | Boolean | `false`   | If `true`, the select will expand to fill the full width of its container.                                 |
+| `id`        | String  | —         | The `id` attribute for the select element. Useful for label associations.                                  |
 
 ## Emits
 

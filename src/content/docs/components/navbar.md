@@ -67,11 +67,11 @@ function getMenuClass(menu) {
     'relative px-3 py-2 sm:p-0',
     props.activeMenu === menu.id
       ? [
-          'font-bold rounded-md bg-amber-800 text-white sm:bg-transparent sm:text-amber-800',
+          'font-bold rounded-md bg-blue-600 text-white sm:bg-transparent sm:text-blue-600',
           props.customClass.menuActive,
         ]
       : [
-          'rounded-md text-gray-900 hover:bg-gray-100 sm:text-gray-900 sm:hover:text-amber-800 sm:hover:bg-transparent',
+          'rounded-md text-gray-900 hover:bg-gray-100 sm:text-gray-900 sm:hover:text-blue-600 sm:hover:bg-transparent',
           props.customClass.menuDefault,
         ],
   ];
