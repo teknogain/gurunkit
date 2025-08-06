@@ -22,30 +22,38 @@ import Spinner from './Spinner.vue';
 const props = defineProps({
   color: {
     type: String,
-    default: 'blue',
+    default: 'info',
+    validator: (value) =>
+      [
+        'info',
+        'error',
+        'warning',
+        'success',
+        'secondary',
+      ].includes(value),
   },
   loading: Boolean,
   withClose: Boolean,
 });
 const emit = defineEmits(['close']);
 
-const color = computed(() => {
+const colorClass = computed(() => {
   return {
-    blue: 'bg-blue-100 border-blue-300 text-blue-500',
-    red: 'bg-red-100 border-red-300 text-red-500',
-    yellow: 'bg-yellow-100 border-yellow-300 text-yellow-500',
-    green: 'bg-green-100 border-green-300 text-green-500',
-    gray: 'bg-gray-100 border-gray-300 text-gray-500',
+    info: 'bg-blue-100 border-blue-300 text-blue-600',
+    error: 'bg-red-100 border-red-300 text-red-600',
+    warning: 'bg-yellow-100 border-yellow-300 text-yellow-700',
+    success: 'bg-green-100 border-green-300 text-green-600',
+    secondary: 'bg-gray-100 border-gray-300 text-gray-600',
   }[props.color || 'blue'];
 });
 
 const icon = computed(() => {
   return {
-    blue: 'tabler:info-circle-filled',
-    red: 'tabler:alert-circle-filled',
-    yellow: 'tabler:alert-circle-filled',
-    green: 'tabler:check-circle-filled',
-    gray: 'tabler:info-circle-filled',
+    info: 'tabler:info-circle-filled',
+    error: 'tabler:alert-circle-filled',
+    warning: 'tabler:alert-circle-filled',
+    success: 'tabler:circle-check-filled',
+    secondary: 'tabler:info-circle-filled',
   }[props.color || 'blue'];
 });
 </script>
@@ -54,7 +62,7 @@ const icon = computed(() => {
   <div
     :class="[
       'px-4 py-3 rounded-md border flex items-start justify-between gap-2',
-      color,
+      colorClass,
     ]"
   >
     <div class="flex items-start gap-2">
@@ -66,7 +74,7 @@ const icon = computed(() => {
       <Icon
         v-else
         :icon="icon"
-        class="size-4 mt-1"
+        class="size-4 mt-1 shrink-0"
       />
       <slot />
     </div>
@@ -85,11 +93,11 @@ const icon = computed(() => {
 
 ## Props
 
-| Prop        | Type    | Default  | Description                                                                              |
-| ----------- | ------- | -------- | ---------------------------------------------------------------------------------------- |
-| `color`     | String  | `'blue'` | Color variant of the alert. Options: `'blue'`, `'red'`, `'yellow'`, `'green'`, `'gray'`. |
-| `loading`   | Boolean | `false`  | If `true`, shows a loading spinner instead of the icon.                                  |
-| `withClose` | Boolean | `false`  | If `true`, displays a close button on the right side of the alert.                       |
+| Prop        | Type    | Default  | Description                                                                                        |
+| ----------- | ------- | -------- | -------------------------------------------------------------------------------------------------- |
+| `color`     | String  | `'info'` | Color variant of the alert. Options: `'info'`, `'error'`, `'warning'`, `'success'`, `'secondary'`. |
+| `loading`   | Boolean | `false`  | If `true`, shows a loading spinner instead of the icon.                                            |
+| `withClose` | Boolean | `false`  | If `true`, displays a close button on the right side of the alert.                                 |
 
 ## Emits
 
