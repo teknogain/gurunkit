@@ -30,12 +30,14 @@ const props = defineProps({
   },
   placeholder: String,
   searchEmptyCreate: Boolean,
+  required: Boolean,
 });
 const emit = defineEmits([
   'opened',
   'search-debounce',
   'scroll-bottom',
   'create-empty-search-item',
+  'change',
 ]);
 
 const visible = ref(false);
@@ -105,6 +107,8 @@ function onKeydownInput(e) {
     };
     visible.value = false;
     searchInput.value.input.blur();
+
+    emit('change');
   } else if (e.key === 'Tab') {
     visible.value = false;
   }
@@ -115,10 +119,14 @@ function onClickItem(item) {
     name: item.name,
   };
   visible.value = false;
+
+  emit('change');
 }
 function onClear() {
   selected.value = null;
   visible.value = false;
+
+  emit('change');
 }
 function onSearchDebounce() {
   currentHoverItem.value = null;
@@ -164,17 +172,19 @@ watch(visible, (newVisible) => {
     class="relative"
   >
     <div class="relative">
-      <base-input
+      <BaseInput
         ref="search-input"
         v-model="search"
         fullwidth
         :placeholder="placeholder"
+        :required="required"
         @focus="visible = true"
         @keydown="onKeydownInput"
         @input-debounce="onSearchDebounce"
       />
       <spinner
         v-if="loading"
+        color="secondary"
         class="absolute top-3 right-2"
       />
       <button
@@ -223,7 +233,7 @@ watch(visible, (newVisible) => {
         @mouseenter="onHoveritem(index)"
         @click="onClickItem(item)"
       >
-        {{ item.name }}
+        <slot name="item" :item="item">{{ item.name }}</slot>
       </div>
     </div>
   </div>
@@ -237,9 +247,10 @@ watch(visible, (newVisible) => {
 
 | Prop                | Type    | Required | Description                                                    |
 | ------------------- | ------- | -------- | -------------------------------------------------------------- |
-| `items`             | Array   | Yes    | List of selectable items, each item must have `id` and `name`. |
-| `placeholder`       | String  | No     | Placeholder text displayed in the input field.                 |
-| `searchEmptyCreate` | Boolean | No     | Whether to allow creating a new item when no match is found.   |
+| `items`             | Array   | Yes      | List of selectable items, each item must have `id` and `name`. |
+| `placeholder`       | String  | No       | Placeholder text displayed in the input field.                 |
+| `searchEmptyCreate` | Boolean | No       | Whether to allow creating a new item when no match is found.   |
+| `required`          | Boolean | No       | Whether the select input is required or not.                   |
 
 ## Models
 
@@ -252,12 +263,15 @@ watch(visible, (newVisible) => {
 ## Emits
 
 | Event                 | Description                                                              |
-| -------------------------- | ------------------------------------------------------------------------ |
-| `opened`                   | Emitted when the dropdown is opened.                                     |
-| `search-debounce`          | Emitted after the search input changes (with debounce from `Input`). |
-| `scroll-bottom`            | Emitted when scrolling to the bottom of the dropdown (for lazy loading). |
-| `create-empty-search-item` | Emitted when clicking "Add as new item" if search has no results.        |
+| ---------------------- | ------------------------------------------------------------------------ |
+| `opened`               | Emitted when the dropdown is opened.                                     |
+| `search-debounce`      | Emitted after the search input changes (with debounce from `Input`).     |
+| `scroll-bottom`        | Emitted when scrolling to the bottom of the dropdown (for lazy loading). |
+| `create-empty-search-item` | Emitted when clicking "Add as new item" if search has no results.    |
+| `change`               | Emitted when the selected option changes.                                |
 
 ## Slots
 
-This component does not use any slots.
+| Slot  | Props               | Description                                              |
+| ----- | ------------------- | -------------------------------------------------------- |
+| `item`| `{ item: Object }`  | Slot to override the default rendering of each item.     |

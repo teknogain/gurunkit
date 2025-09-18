@@ -11,6 +11,8 @@ description: A guide to using the table component.
 
 ```vue
 <script setup>
+import Spinner from './Spinner.vue';
+
 defineProps({
   columns: {
     type: Array,
@@ -20,7 +22,16 @@ defineProps({
     type: Array,
     required: true,
   },
+  loading: Boolean,
+  hover: {
+    type: Boolean,
+    default: true,
+  },
 });
+
+const classes = {
+  td: 'px-4 py-3 border-b border-gray-300 text-gray-900',
+};
 </script>
 
 <template>
@@ -31,7 +42,7 @@ defineProps({
           v-for="column in columns"
           :key="column.id"
           :class="[
-            'bg-gray-100 border-b border-gray-300 px-3 py-2 text-gray-900',
+            'bg-gray-100 border-b border-gray-300 px-4 py-3 text-gray-900',
             column.textAlign
               ? column.textAlign === 'right'
                 ? 'text-right'
@@ -43,32 +54,49 @@ defineProps({
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="relative">
+      <tr v-if="loading">
+        <td>
+          <div
+            class="absolute inset-0 flex items-center justify-center bg-gray-200/50 z-10"
+          >
+            <Spinner size="lg" color="secondary" />
+          </div>
+        </td>
+      </tr>
+      <tr v-if="!data.length">
+        <td class="px-4 py-3 text-center" :colspan="columns.length">
+          No Data
+        </td>
+      </tr>
       <tr
-        v-for="item in data"
+        v-for="(item, index) in data"
         :key="item.id"
+        :class="[hover ? 'hover:bg-gray-50' : '']"
       >
         <slot
           name="td"
           :item="item"
-          :classes="{
-            td: 'px-3 py-2 border-b border-gray-300 text-gray-900',
-          }"
+          :index="index"
+          :classes="classes"
         />
       </tr>
     </tbody>
+    <tfoot>
+      <slot name="footer" :classes="classes" />
+    </tfoot>
   </table>
 </template>
 ```
 
 ## Props
 
-| Prop      | Type  | Required | Description                                                                                                                                 |
-| --------- | ----- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `columns` | Array | Ye       | Array of column definitions. Each item must have `id` and `name`, and may optionally include `textAlign` (`'left'`, `'center'`, `'right'`). |
-| `data`    | Array | Ye       | Array of row data objects. Each object should match the `id` fields defined in the `columns` prop.                                          |
-
-Berikut adalah tabel **Slots** yang telah disesuaikan berdasarkan cuplikan kode yang kamu berikan (`slot name="td"` dengan scoped props):
+| Prop      | Type    | Required | Default | Description                                                                                                                               |
+| --------- | ------- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `columns` | Array   | Yes      | —       | Array of column definitions. Each item must have `id` and `name`, and may optionally include `textAlign` (`'left'`, `'center'`, `'right'`). |
+| `data`    | Array   | Yes      | —       | Array of row data objects. Each object should match the `id` fields defined in the `columns` prop.                                        |
+| `loading` | Boolean | No       | `false` | If `true`, displays a loading state for the table.                                                                                        |
+| `hover`   | Boolean | No       | `true`  | If `true`, enables hover effects on table rows.                                                                                           |
 
 ## Slots
 

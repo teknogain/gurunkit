@@ -35,6 +35,15 @@ defineProps({
     type: Boolean,
     default: true,
   },
+  containerProps: Object,
+  withContainer: {
+    type: Boolean,
+    default: true,
+  },
+  responsiveHeader: {
+    type: Boolean,
+    default: true,
+  },
 });
 </script>
 
@@ -45,12 +54,18 @@ defineProps({
       paddingVertical ? 'py-10 sm:py-12 md:py-14 xl:py-16 2xl:py-20' : '',
     ]"
   >
-    <Container>
+    <component :is="withContainer ? Container : 'div'" v-bind="containerProps">
       <div
         v-if="title"
         class="space-y-4 lg:space-y-6 2xl:space-y-8"
       >
-        <div class="flex items-center justify-between">
+        <div
+          :class="[
+            responsiveHeader
+              ? 'flex flex-col items-start gap-2 justify-between sm:flex-row sm:items-center'
+              : 'flex items-center gap-2 justify-between',
+          ]"
+        >
           <component
             :is="`h${titleLevel}`"
             class="flex items-center gap-2 font-bold text-gray-900 text-xl tracking-tight md:text-2xl lg:text-3xl xl:gap-4 2xl:text-4xl"
@@ -66,7 +81,7 @@ defineProps({
         <slot />
       </div>
       <slot v-else />
-    </Container>
+    </component>
   </component>
 </template>
 ```
@@ -80,6 +95,9 @@ defineProps({
 | `titleIcon`       | String  | —           | Name of the Iconify icon displayed alongside the title.                                         |
 | `titleLevel`      | Number  | `2`         | Heading level for the title (`1` to `6`). Used to render the appropriate `<h1>`–`<h6>` element. |
 | `paddingVertical` | Boolean | `true`      | If `true`, applies vertical padding to the section content.                                     |
+| `containerProps`  | Object  | —           | Props to be passed directly to the container component.                                         |
+| `withContainer`   | Boolean | `true`      | If `true`, renders the container component; if `false`, renders a plain `<div>`.                |
+| `responsiveHeader`| Boolean | `true`      | Controls whether the section header is responsive.                                              |
 
 ## Slots
 
