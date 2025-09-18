@@ -44,7 +44,17 @@ const colorClass = computed(() => {
     warning: 'bg-yellow-100 border-yellow-300 text-yellow-700',
     success: 'bg-green-100 border-green-300 text-green-600',
     secondary: 'bg-gray-100 border-gray-300 text-gray-600',
-  }[props.color || 'blue'];
+  }[props.color || 'info'];
+});
+
+const spinnerColor = computed(() => {
+  return {
+    info: 'light-primary',
+    error: 'light-error',
+    warning: 'light-warning',
+    success: 'light-success',
+    secondary: 'light',
+  }[props.color || 'info'];
 });
 
 const icon = computed(() => {
@@ -54,7 +64,7 @@ const icon = computed(() => {
     warning: 'tabler:alert-circle-filled',
     success: 'tabler:circle-check-filled',
     secondary: 'tabler:info-circle-filled',
-  }[props.color || 'blue'];
+  }[props.color || 'info'];
 });
 </script>
 
@@ -69,7 +79,7 @@ const icon = computed(() => {
       <Spinner
         v-if="loading"
         class="mt-1"
-        :color="props.color"
+        :color="spinnerColor"
       />
       <Icon
         v-else
