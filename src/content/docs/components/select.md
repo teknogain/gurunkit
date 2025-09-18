@@ -31,7 +31,7 @@ const props = defineProps({
   },
   color: {
     type: String,
-    default: 'white',
+    default: 'light',
     validator: (value) =>
       [
         'secondary',
@@ -44,6 +44,8 @@ const props = defineProps({
   },
   debounced: Boolean,
   fullwidth: Boolean,
+  required: Boolean,
+  name: String,
   id: String,
 });
 const emit = defineEmits(['change']);
@@ -142,6 +144,8 @@ function onChange() {
 | `debounced` | Boolean | `false`   | If `true`, the `change` event is debounced (500ms).                                                        |
 | `fullwidth` | Boolean | `false`   | If `true`, the select will expand to fill the full width of its container.                                 |
 | `id`        | String  | —         | The `id` attribute for the select element. Useful for label associations.                                  |
+| `name`      | String  | —         | The `name` attribute for the select element, useful for form submissions.                                  |
+| `required`  | Boolean | `false`   | Whether the select input is required or not.                                                               |
 
 ## Emits
 
