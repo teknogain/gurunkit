@@ -78,14 +78,14 @@ const colorClass = computed(() => {
 
 const spinnerColor = computed(() => {
   return {
-    secondary: 'white',
-    primary: 'blue',
-    light: 'white',
-    warning: 'yellow',
-    success: 'green',
-    error: 'red',
-    transparent: 'white',
-    bordered: 'white',
+    secondary: 'light',
+    primary: 'light-primary',
+    light: 'light',
+    warning: 'light-warning',
+    success: 'light-success',
+    error: 'light-error',
+    transparent: 'light',
+    bordered: 'light',
   }[props.color || 'secondary'];
 });
 
