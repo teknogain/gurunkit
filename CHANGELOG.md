@@ -30,3 +30,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Alert` component: Use semantic color names.
 - `Button` component: Use semantic color names.
 - `Modal` component: Allow vertical scrolling on overflow.
+
+## [0.0.4] – 2025-10-11
+
+### Added
+
+No additions.
+
+### Changed
+
+- Fixed some props naming conventions.
+- Removed unused props.
