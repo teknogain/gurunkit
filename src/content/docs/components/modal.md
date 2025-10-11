@@ -28,7 +28,7 @@ defineProps({
     type: Boolean,
     default: true,
   },
-  classes: {
+  customClass: {
     type: Object,
     default: () => ({
       container: '',
@@ -73,7 +73,7 @@ watch(visible, (newValue) => {
     <component
       :is="withContainer ? Container : 'div'"
       v-motion-slide-top
-      :class="classes.container"
+      :class="customClass.container"
       v-bind="containerProps"
     >
       <Card
@@ -104,7 +104,7 @@ watch(visible, (newValue) => {
 | Prop             | Type    | Default             | Description                                                                                 |
 | ---------------- | ------- | ------------------- | ------------------------------------------------------------------------------------------- |
 | `withContainer`  | Boolean | `true`              | Wraps the modal content with `Container` if `true`.                                         |
-| `classes`        | Object  | `{ container: '' }` | Custom class object. The `container` key is used to apply classes to the container wrapper. |
+| `customClass`        | Object  | `{ container: '' }` | Custom class object. The `container` key is used to apply customClass to the container wrapper. |
 | `cardProps`      | Object  | `null`              | Props forwarded to the `Card` component.                                                    |
 | `containerProps` | Object  | `null`              | Props forwarded to the container element (`Container` or `div`).                            |
 | `title`          | String  | —                   | Title text displayed in the modal card header.                                              |

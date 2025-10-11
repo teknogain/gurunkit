@@ -53,7 +53,7 @@ const visible = defineModel('visible');
   <Modal
     v-model:visible="visible"
     :with-container="false"
-    :classes="{ container: 'w-fit mx-auto px-4' }"
+    :custom-class="{ container: 'w-fit mx-auto px-4' }"
     :card-props="{ paddless: true, class: 'p-8' }"
   >
     <div class="flex flex-col items-center justify-center text-center gap-4">
