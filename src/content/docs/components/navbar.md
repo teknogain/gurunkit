@@ -35,7 +35,11 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
-  menuCenter: Boolean,
+  menuAlignHorizontal: {
+    type: String,
+    default: 'left',
+    validator: (value) => ['left', 'center'].includes(value),
+  },
   customClass: {
     type: Object,
     default: () => ({
@@ -52,7 +56,7 @@ const mobileSidebarVisible = ref(false);
 
 const menusDynamicPositionClass = computed(() => {
   const baseClass = [
-    props.menuCenter ? 'sm:left-1/2 sm:-translate-x-1/2' : 'sm:left-0',
+    props.menuAlignHorizontal === 'center' ? 'sm:left-1/2 sm:-translate-x-1/2' : 'sm:left-0',
   ];
 
   if (mobileSidebarVisible.value) {
@@ -95,7 +99,7 @@ router.afterEach(() => (mobileSidebarVisible.value = false));
     <Container
       :class="[
         'flex items-center justify-between',
-        menuCenter ? 'relative' : '',
+        props.menuAlignHorizontal === 'center' ? 'relative' : '',
       ]"
       v-bind="containerProps"
     >
@@ -134,7 +138,7 @@ router.afterEach(() => (mobileSidebarVisible.value = false));
           :class="[
             'fixed bg-white top-0 h-screen flex flex-col w-48 z-20 border-r border-gray-300 p-3 transition-all sm:transition-none sm:h-full sm:bg-transparent sm:border-0 sm:h-auto sm:w-auto sm:p-0 sm:flex-row sm:items-center sm:gap-4',
             menusDynamicPositionClass,
-            menuCenter ? 'sm:absolute' : 'sm:static',
+            props.menuAlignHorizontal === 'center' ? 'sm:absolute' : 'sm:static',
           ]"
         >
           <template
@@ -167,16 +171,16 @@ router.afterEach(() => (mobileSidebarVisible.value = false));
 
 ## Props
 
-| Prop             | Type    | Default                               | Description                                                                 |
-| ---------------- | ------- | ------------------------------------- | --------------------------------------------------------------------------- |
-| `menus`          | Array   | `[]`                                  | List of menu items, each with `id`, `name`, and `to` (for `router-link`).   |
-| `activeMenu`     | String  | —                                     | The ID of the currently active menu item. Used to apply active styles.      |
-| `containerProps` | Any     | —                                     | Props forwarded to the `Container` component (e.g., `class`, `style`, etc). |
-| `brand`          | String  | —                                     | Optional brand name or logo text to display in the navbar.                  |
-| `brandRoute`     | Any     | —                                     | Route destination for the brand element. Can be a string or route object.   |
-| `bordered`       | Boolean | `true`                                | If `true`, applies a bottom border to the navbar.                           |
-| `menuCenter`     | Boolean | `false`                               | If `true`, applies horizontal center alignment to the menu items.           |
-| `customClass`    | Object  | `{ menuActive: '', menuDefault: '' }` | Custom classes for styling active and default menu items.                   |
+| Prop                  | Type    | Default                               | Description                                                                               |
+| --------------------- | ------- | ------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `menus`               | Array   | `[]`                                  | List of menu items, each with `id`, `name`, and `to` (for `router-link`).                 |
+| `activeMenu`          | String  | —                                     | The ID of the currently active menu item. Used to apply active styles.                    |
+| `containerProps`      | Any     | —                                     | Props forwarded to the `Container` component (e.g., `class`, `style`, etc).               |
+| `brand`               | String  | —                                     | Optional brand name or logo text to display in the navbar.                                |
+| `brandRoute`          | Any     | —                                     | Route destination for the brand element. Can be a string or route object.                 |
+| `bordered`            | Boolean | `true`                                | If `true`, applies a bottom border to the navbar.                                         |
+| `menuAlignHorizontal` | String  | `'left'`                              | Controls horizontal alignment of the menu items. Accepted values: `'left'` or `'center'`. |
+| `customClass`         | Object  | `{ menuActive: '', menuDefault: '' }` | Custom classes for styling active and default menu items.                                 |
 
 ## Slots
 

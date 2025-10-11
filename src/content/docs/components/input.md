@@ -18,7 +18,6 @@ import { computed, ref } from 'vue';
 import { debounce } from 'src/utils/debounce'; // ← required utility
 
 const props = defineProps({
-  fullwidth: Boolean,
   size: {
     type: String,
     default: 'md',
@@ -29,7 +28,11 @@ const props = defineProps({
     default: 'auto',
     validator: (value) => ['auto', 'fit', 'full'].includes(value),
   },
-  textarea: Boolean,
+  tag: {
+    type: String,
+    default: 'input',
+    validator: (value) => ['input', 'textarea'].includes(value),
+  },
 });
 const emit = defineEmits(['input', 'input-debounce']);
 
@@ -38,8 +41,8 @@ const input = ref();
 
 const sizeClass = computed(() => {
   const sizes = {
-    sm: ['text-sm px-2 rounded', props.textarea ? 'min-h-8 py-2' : 'h-8'],
-    md: ['px-2.5 rounded-md', props.textarea ? 'min-h-10 py-2' : 'h-10'],
+    sm: ['text-sm px-2 rounded', props.tag === 'textarea' ? 'min-h-8 py-2' : 'h-8'],
+    md: ['px-2.5 rounded-md', props.tag === 'textarea' ? 'min-h-10 py-2' : 'h-10'],
   };
 
   return sizes[props.size];
@@ -50,10 +53,6 @@ const widthClass = computed(() => {
     fit: 'w-fit',
     full: 'w-full',
   };
-
-  if (props.fullwidth) {
-    return widths.full;
-  }
 
   return widths[props.width];
 });
@@ -77,7 +76,7 @@ defineExpose({ input });
 
 <template>
   <input
-    v-if="!textarea"
+    v-if="tag === 'input'"
     ref="input"
     v-model="value"
     type="text"
@@ -97,13 +96,12 @@ defineExpose({ input });
 
 ## Props
 
-| Prop           | Type    | Default  | Description                                                                                    |
-| -------------- | ------- | -------- | ---------------------------------------------------------------------------------------------- |
-| `fullwidth`    | Boolean | `false`  | If `true`, makes the input take full width.                                                    |
-| `size`         | String  | `'sm'`   | Sets the input size. Accepted values: `'sm'`, `'md'`, `'lg'`.                                  |
-| `width`        | String  | `'auto'` | Controls the input width. Accepted values: `'auto'`, `'fit'`, `'full'`.                        |
-| `textarea`     | Boolean | `false`  | If `true`, renders a `<textarea>` instead of a standard `<input>`.                             |
-| *native attrs* | –       | –        | All native `<input>` attributes like `placeholder`, `disabled`, etc. are passed automatically. |
+| Prop           | Type   | Default   | Description                                                                          |
+| -------------- | ------ | --------- | ------------------------------------------------------------------------------------ |
+| `size`         | String | `'sm'`    | Sets the input size. Accepted values: `'sm'`, `'md'`, `'lg'`.                        |
+| `width`        | String | `'auto'`  | Controls the input width. Accepted values: `'auto'`, `'fit'`, `'full'`.              |
+| `tag`          | String | `'input'` | Determines the rendered element type. Accepted values: `'input'`, `'textarea'`.      |
+| *native attrs* | –      | –         | All native attributes like `placeholder`, `disabled`, etc. are passed automatically. |
 
 ## Models
 

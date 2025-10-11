@@ -19,7 +19,7 @@ import { computed, ref } from 'vue';
 
 const props = defineProps({
   options: Array,
-  customWidth: Boolean,
+  overrideWidth: Boolean,
   customClass: {
     type: Object,
     default: () => ({
@@ -34,7 +34,7 @@ const classes = computed(() => {
   return {
     content: [
       'absolute top-8 right-0 w-fit bg-white rounded-md border z-10 border-gray-300',
-      props.customWidth ? '' : 'min-w-40',
+      props.overrideWidth ? '' : 'min-w-40',
       props.customClass.content,
     ],
     header: 'px-3 py-2 border-b border-gray-300',
@@ -90,7 +90,7 @@ function onToggle() {
 | Prop          | Type    | Required | Default           | Description                                                                                                                     |
 | ------------- | ------- | -------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | `options`     | Array   | No        | `undefined`              | List of option objects used in the dropdown. Each option is passed to the `option` slot. Each object should have a unique `id`. |
-| `customWidth` | Boolean | No        | `false`           | When set to `true`, disables default width styling applied to the dropdown.                                                     |
+| `overrideWidth` | Boolean | No        | `false`           | When set to `true`, disables default width styling applied to the dropdown.                                                     |
 | `customClass` | Object  | No        | `{ content: '' }` | Custom classes applied to the dropdown content wrapper. Useful for advanced styling or class overrides.                         |
 
 ## Slots

@@ -28,7 +28,7 @@ defineProps({
     type: Boolean,
     default: true,
   },
-  classes: {
+  customClass: {
     type: Object,
     default: () => ({
       container: '',
@@ -37,7 +37,11 @@ defineProps({
   cardProps: null,
   containerProps: null,
   title: String,
-  verticalCenter: Boolean,
+  alignVertical: {
+    type: String,
+    default: 'top',
+    validator: (value) => ['top', 'center'].includes(value),
+  },
 });
 
 const emit = defineEmits(['opened']);
@@ -63,13 +67,13 @@ watch(visible, (newValue) => {
     v-if="visible"
     :class="[
       'fixed inset-0 bg-black/30 py-20 z-10 overflow-y-auto',
-      verticalCenter ? 'flex items-center' : '',
+      alignVertical === 'center' ? 'flex items-center' : '',
     ]"
   >
     <component
       :is="withContainer ? Container : 'div'"
       v-motion-slide-top
-      :class="classes.container"
+      :class="customClass.container"
       v-bind="containerProps"
     >
       <Card
@@ -97,14 +101,14 @@ watch(visible, (newValue) => {
 
 ## Props
 
-| Prop             | Type    | Default             | Description                                                          |
-| ---------------- | ------- | ------------------- | -------------------------------------------------------------------- |
-| `withContainer`  | Boolean | `true`              | Wraps the modal content with `Container` if `true`.              |
-| `classes`        | Object  | `{ container: '' }` | Custom class object. The `container` key is used to apply classes to the container wrapper. |
-| `cardProps`      | Object  | `null`              | Props forwarded to the `Card` component.                         |
-| `containerProps` | Object  | `null`              | Props forwarded to the container element (`Container` or `div`). |
-| `title`          | String  | —                   | Title text displayed in the modal card header.                       |
-| `verticalCenter` | Boolean | `false`             | Vertically centers the modal content if `true`.                      |
+| Prop             | Type    | Default             | Description                                                                                 |
+| ---------------- | ------- | ------------------- | ------------------------------------------------------------------------------------------- |
+| `withContainer`  | Boolean | `true`              | Wraps the modal content with `Container` if `true`.                                         |
+| `customClass`        | Object  | `{ container: '' }` | Custom class object. The `container` key is used to apply customClass to the container wrapper. |
+| `cardProps`      | Object  | `null`              | Props forwarded to the `Card` component.                                                    |
+| `containerProps` | Object  | `null`              | Props forwarded to the container element (`Container` or `div`).                            |
+| `title`          | String  | —                   | Title text displayed in the modal card header.                                              |
+| `alignVertical`  | String  | `'top'`             | Controls vertical alignment of the modal content. Accepted values: `'top'` or `'center'`.   |
 
 ## Models
 
