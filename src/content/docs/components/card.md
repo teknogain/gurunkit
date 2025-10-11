@@ -22,7 +22,7 @@ defineProps({
     type: Boolean,
     default: true,
   },
-  shadow: Boolean,
+  hasShadow: Boolean,
   rounded: {
     type: Boolean,
     default: true,
@@ -40,7 +40,7 @@ defineProps({
   <div
     :class="[
       bordered ? 'border border-gray-300' : '',
-      shadow ? 'shadow-md' : '',
+      hasShadow ? 'shadow-md' : '',
       rounded ? 'rounded-md' : '',
       dimmed ? 'bg-gray-100' : 'bg-white',
     ]"
@@ -85,7 +85,7 @@ defineProps({
 | `titleResponsive` | Boolean | `false` | If `true`, the title adapts to screen size responsively.               |
 | `titleTag`        | String  | `'h2'`  | The HTML tag used to render the title (e.g., `'h1'`, `'h2'`, `'div'`). |
 | `bordered`        | Boolean | `true`  | Whether the card should have a border.                                 |
-| `shadow`          | Boolean | `false` | Adds a shadow if `true`.                                               |
+| `hasShadow`       | Boolean | `false` | Adds a shadow if `true`.                                               |
 | `rounded`         | Boolean | `true`  | Whether the card has rounded corners.                                  |
 | `striped`         | Boolean | `true`  | Adds a bottom border under the title for separation.                   |
 | `paddless`        | Boolean | `false` | Removes default padding inside the card body if set to `true`.         |
