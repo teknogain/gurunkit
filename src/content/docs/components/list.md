@@ -28,7 +28,7 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
-  hover: Boolean,
+  hoverable: Boolean,
   emptyMessage: {
     type: String,
     default: "There's nothing here yet.",
@@ -43,7 +43,7 @@ const classes = computed(() => {
   };
 
   return {
-    item: [itemSizes[props.size], props.hover ? 'hover:bg-gray-50' : ''],
+    item: [itemSizes[props.size], props.hoverable ? 'hover:bg-gray-50' : ''],
   };
 });
 </script>
@@ -92,7 +92,7 @@ const classes = computed(() => {
 | `data`         | Array   | —                             | The array of data items to render. Each item should have a unique `id`. |
 | `size`         | String  | `"md"`                        | Sets padding size for each item. Supports `"sm"`, `"md"`, and `"lg"`.   |
 | `striped`      | Boolean | `true`                        | Adds a dividing line between items if `true`.                           |
-| `hover`        | Boolean | `false`                       | Adds a subtle hover background on each item.                            |
+| `hoverable`    | Boolean | `false`                       | Adds a subtle hover background on each item.                            |
 | `emptyMessage` | String  | `"There's nothing here yet."` | Message shown when the `data` array is empty.                           |
 
 ## Slots
