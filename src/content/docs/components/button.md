@@ -40,8 +40,12 @@ const props = defineProps({
     default: 'md',
     validator: (value) => ['sm', 'md', 'lg'].includes(value),
   },
+  width: {
+    type: String,
+    default: 'auto',
+    validator: (value) => ['auto', 'full'].includes(value),
+  },
   type: String,
-  fullwidth: Boolean,
   icon: String,
   loading: Boolean,
   disabled: Boolean,
@@ -52,14 +56,14 @@ const props = defineProps({
     default: 'start',
     validator: (value) => ['start', 'end'].includes(value),
   },
-  customColor: Boolean,
+  overrideColor: Boolean,
   tag: {
     default: 'button',
   },
 });
 
 const colorClass = computed(() => {
-  if (props.customColor) {
+  if (props.overrideColor) {
     return '';
   }
   return {
@@ -121,7 +125,7 @@ const sizeClass = computed(() => {
       'rounded-md font-medium cursor-pointer inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed',
       colorClass,
       sizeClass,
-      fullwidth ? 'w-full' : '',
+      width === 'full' ? 'w-full' : '',
     ]"
   >
     <Spinner
@@ -148,14 +152,14 @@ const sizeClass = computed(() => {
 | `color`        | String  | `'secondary'` | Determines the button color variant. Acceptable values: `'secondary'`, `'primary'`, `'light'`, `'warning'`, `'success'`, `'error'`, `'transparent'`, `'bordered'`. |
 | `size`         | String  | `'md'`        | Determines the button size. Acceptable values: `'sm'`, `'md'`, `'lg'`.                                                                                             |
 | `type`         | String  | `undefined`   | The native button type (`button`, `submit`, `reset`).                                                                                                              |
-| `fullwidth`    | Boolean | `false`       | If `true`, makes the button take full width of the container.                                                                                                      |
+| `width`        | String  | `'auto'`      | Controls the button width. Acceptable values: `'auto'` (fits content) or `'full'` (takes full container width).                                                    |
 | `icon`         | String  | `undefined`   | Name of the Iconify icon to display before the text.                                                                                                               |
 | `iconPosition` | String  | `'start'`     | Position of the icon relative to the text. Acceptable values: `'start'`, `'end'`.                                                                                  |
 | `loading`      | Boolean | `false`       | If `true`, replaces content with a spinner and disables the button.                                                                                                |
 | `disabled`     | Boolean | `false`       | Disables the button if `true`.                                                                                                                                     |
 | `iconOnly`     | Boolean | `false`       | If `true`, the button becomes square and only shows the icon or spinner.                                                                                           |
 | `responsive`   | Boolean | `false`       | If `true`, the button adapts to different screen sizes for better responsiveness.                                                                                  |
-| `customColor`  | Boolean | `false`       | If `true`, disables the default color styling, allowing for fully custom color control.                                                                            |
+| `overrideColor`  | Boolean | `false`       | If `true`, disables the default color styling, allowing for fully custom color control.                                                                            |
 | `tag`          | Type    | `'button'`    | The HTML tag or component to render. Useful for rendering as a `router-link`, `a`, or other custom components.                                                     |
 
 ## Slots
