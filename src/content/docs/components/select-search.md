@@ -19,8 +19,8 @@ description: A guide to using the select search component.
 ```vue
 <script setup>
 import { Icon } from '@iconify/vue';
-import BaseInput from 'src/components/base/Input.vue';
-import Spinner from 'src/components/base/Spinner.vue';
+import BaseInput from './Input.vue';
+import Spinner from './Spinner.vue';
 import { ref, useTemplateRef, watch } from 'vue';
 
 const props = defineProps({
@@ -29,7 +29,7 @@ const props = defineProps({
     required: true,
   },
   placeholder: String,
-  searchEmptyCreate: Boolean,
+  withSearchEmptyCreate: Boolean,
   required: Boolean,
 });
 const emit = defineEmits([
@@ -175,7 +175,7 @@ watch(visible, (newVisible) => {
       <BaseInput
         ref="search-input"
         v-model="search"
-        fullwidth
+        width="full"
         :placeholder="placeholder"
         :required="required"
         @focus="visible = true"
@@ -209,13 +209,13 @@ watch(visible, (newVisible) => {
       @scroll="onScrollWrapper"
     >
       <p
-        v-if="!items.length && (searchEmptyCreate ? !search : true)"
+        v-if="!items.length && (withSearchEmptyCreate ? !search : true)"
         class="px-3 py-2 text-gray-700 text-center"
       >
         No results found
       </p>
       <a
-        v-else-if="!items.length && search && searchEmptyCreate"
+        v-else-if="!items.length && search && withSearchEmptyCreate"
         class="px-3 py-2 text-gray-700 text-center flex items-center justify-center gap-2 cursor-pointer"
         @click.prevent="onCreateEmptySearchItem"
       >
@@ -249,7 +249,7 @@ watch(visible, (newVisible) => {
 | ------------------- | ------- | -------- | -------------------------------------------------------------- |
 | `items`             | Array   | Yes      | List of selectable items, each item must have `id` and `name`. |
 | `placeholder`       | String  | No       | Placeholder text displayed in the input field.                 |
-| `searchEmptyCreate` | Boolean | No       | Whether to allow creating a new item when no match is found.   |
+| `withSearchEmptyCreate` | Boolean | No       | Whether to allow creating a new item when no match is found.   |
 | `required`          | Boolean | No       | Whether the select input is required or not.                   |
 
 ## Models
