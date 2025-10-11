@@ -23,7 +23,7 @@ defineProps({
     required: true,
   },
   loading: Boolean,
-  hover: {
+  hoverable: {
     type: Boolean,
     default: true,
   },
@@ -72,7 +72,7 @@ const classes = {
       <tr
         v-for="(item, index) in data"
         :key="item.id"
-        :class="[hover ? 'hover:bg-gray-50' : '']"
+        :class="[hoverable ? 'hover:bg-gray-50' : '']"
       >
         <slot
           name="td"
@@ -96,7 +96,7 @@ const classes = {
 | `columns` | Array   | Yes      | —       | Array of column definitions. Each item must have `id` and `name`, and may optionally include `textAlign` (`'left'`, `'center'`, `'right'`). |
 | `data`    | Array   | Yes      | —       | Array of row data objects. Each object should match the `id` fields defined in the `columns` prop.                                        |
 | `loading` | Boolean | No       | `false` | If `true`, displays a loading state for the table.                                                                                        |
-| `hover`   | Boolean | No       | `true`  | If `true`, enables hover effects on table rows.                                                                                           |
+| `hoverable`   | Boolean | No       | `true`  | If `true`, enables hover effects on table rows.                                                                                           |
 
 ## Slots
 
